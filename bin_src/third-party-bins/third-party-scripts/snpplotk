@@ -1,0 +1,373 @@
+#!/usr/bin/env wish
+
+# ***************************************************************************
+#                       UTILITIES (pasted from solar.tcl)
+# ***************************************************************************
+
+proc is_float {string} {
+    if {1 == [scan $string "%g%s" test junk]} {
+	return 1
+    }
+    return 0
+}
+
+proc is_integer {string} {
+    if {1 == [scan $string "%d%s" test junk]} {
+	return 1
+    }
+    return 0
+}
+
+proc read_arglist {arg_list args} {
+    set case_insensitive 1
+
+    set pname [lindex [info level [expr [info level] - 1]] 0]
+    set target_pairs $args
+    set return_list {}
+    for {set i 0} {$i < [llength $arg_list]} {incr i} {
+	set identifier [lindex $arg_list $i]
+	if {"-" != [string range $identifier 0 0]} {
+	    lappend return_list $identifier
+	    continue
+	}
+	if {$case_insensitive} {
+	    set identifier [string tolower $identifier]
+	}
+	set found 0
+	for {set j 0} {$j < [llength $target_pairs]} {incr j 2} {
+	    set target [lindex $target_pairs $j]
+	    if {$case_insensitive} {
+		set target [string tolower $target]
+	    }
+	    if {![string compare $target $identifier]} {
+		set varname [lindex $target_pairs [expr $j + 1]]
+		if {[llength $varname] > 1} {
+#
+# statement evaluation specified
+#
+		    if {-1 != [string first VALUE $varname]} {
+#
+# expression has VALUE substitution so value is required
+#
+			incr i
+			if {[llength $arg_list] < [expr $i + 1]} {
+			error \
+		   "Missing value for argument $identifier to procedure $pname"
+			}
+			set value [lindex $arg_list $i]
+			if {"-" == [string range $value 0 0] && \
+			    ![is_float [lindex $value 0]]} {
+			    error \
+		   "Missing value for argument $identifier to procedure $pname"
+			}
+#
+# perform ONE substitution
+#
+			set position [string first VALUE $varname]
+			set length [string length $varname]
+			set left [expr $position - 1]
+			set right [expr $position + $length]
+			set block \
+"[string range $varname 0 $left]$value[string range $varname $right end]"
+                    } else {
+			set block $varname
+		    }
+		    uplevel $block
+#
+# "simple" assignment specified ; argument always required
+#
+		} else {
+		    incr i
+		    if {[llength $arg_list] < [expr $i + 1]} {
+			error \
+		   "Missing value for argument $identifier to procedure $pname"
+		    }
+		    set value [lindex $arg_list $i]
+		    if {"-" == [string range $value 0 0] && \
+			    ![is_float [lindex $value 0]]} {
+			error \
+		   "Missing value for argument $identifier to procedure $pname"
+		    }
+		    upvar $varname callervar
+		    set callervar $value
+		}
+		set found 1
+		break
+	    }
+	}
+	if {!$found} {
+	    error "Invalid argument [lindex $arg_list $i] to procedure $pname"
+	}
+    }
+    return $return_list
+}
+
+
+# ****************************************************************************
+#                             miniplot main script
+# ****************************************************************************
+
+# Process command line arguments
+
+set usage "USAGE: snpplotk -i infile -m mapfile -o outfile"
+set DEBUG 0
+if {"" == $argv} {
+    puts $usage
+    exit 1
+}
+set infile "snp.ld.dat"
+set mapfile "snp.ld.pos"
+set outfile "snp.ld.ps"
+set r2 0
+set nomap 0
+set nonames 0
+set height 20
+set width  22
+set tfont adobe-helvetica-bold-r-normal--24-240-75-75-p-138-iso8859-1
+set nfont ""
+set lfont ""
+set ps_only 0
+set absrho 0
+set title " "
+set datestamp 0
+set gray 0
+set junk [read_arglist $argv \
+    -i infile \
+    -m mapfile \
+    -o outfile \
+    -ps_only {set ps_only 1} \
+    -absrho {set absrho 1} \
+    -title title \
+    -date {set datestamp 1} \
+    -gray {set gray 1} \
+    -nomap {set nomap 1} \
+    -nonames {set nonames 1} \
+    -height height \
+    -width width \
+    -tfont tfont \
+    -nfont nfont \
+    -lfont lfont \
+    -debug {set DEBUG 1}]
+
+if {"" != $junk} {
+	error "Invalid arguments: $junk"
+}
+
+if {![file exists $infile]} {
+    error "snpplotk input file $infile not found"
+}
+
+# Read SNP location file
+
+set mfile [open $mapfile r]
+gets $mfile
+set nsnp 0
+while {-1 != [gets $mfile line]} {
+    if {3 != [scan $line "%d %s %f" m name loc]} {
+	error "Invalid line in $mapfile: \n$line"
+    }
+    set sname($m) $name
+    set sloc($m) $loc
+    incr nsnp
+}
+close $mfile
+
+if {$nfont == ""} {
+    if {$nsnp >= 50} {
+        set nfont adobe-times-bold-r-normal--12-*-*-*-p-*-iso8859-1
+    } elseif {$nsnp >= 30} {
+        set nfont adobe-times-bold-r-normal--14-*-*-*-p-*-iso8859-1
+    } elseif {$nsnp >= 20} {
+        set nfont adobe-times-bold-r-normal--16-*-*-*-p-*-iso8859-1
+    } elseif {$nsnp >= 10} {
+        set nfont adobe-times-bold-r-normal--18-*-*-*-p-*-iso8859-1
+    } elseif {$nsnp >= 5} {
+        set nfont adobe-times-bold-r-normal--20-*-*-*-p-*-iso8859-1
+    } else {
+        set nfont adobe-times-bold-r-normal--24-*-*-*-p-*-iso8859-1
+    }
+}
+
+# Read SNP diseq file
+
+set ifile [open $infile r]
+gets $ifile
+while {-1 != [gets $ifile line]} {
+    if {3 != [scan $line "%d %d %f" m1 m2 tdis]} {
+	error "Invalid line in $infile: \n$line"
+    }
+    set dis($m1,$m2) $tdis
+    set dis($m2,$m1) $dis($m1,$m2)
+}
+close $ifile
+
+# Set graphing constants
+
+set xstart  3
+set ystart  2
+set xend [expr $width - 4]
+set yend [expr $height - 3]
+
+set tmarg   0.5
+set lmarg   1.5
+set rmarg   0.5
+
+set legwid  1.5
+
+# Open canvas
+
+set c c                       ;# "c" is for centimeters
+canvas .c -width $width$c -height $height$c -bg white
+wm title . $title
+pack .c
+
+# Add title within graph
+
+.c create text [expr $width/2.0]$c $tmarg$c -text $title -anchor n -font -$tfont
+
+if {$datestamp} {
+    set datestring [exec date +%e-%b-%Y]
+    .c create text [expr $lmarg]$c $tmarg$c -text $datestring -anchor n -font -adobe-times-bold-o-normal--14-0-72-72-p-*-iso8859-1
+}
+
+if {$gray} {
+    set legcol(1.0) #000000000000
+    set legcol(0.9) #555555555555
+    set legcol(0.8) #888888888888
+    set legcol(0.7) #999999999999
+    set legcol(0.6) #aaaaaaaaaaaa
+    set legcol(0.5) #bbbbbbbbbbbb
+    set legcol(0.4) #cccccccccccc
+    set legcol(0.3) #dddddddddddd
+    set legcol(0.2) #eeeeeeeeeeee
+    set legcol(0.1) #ffffffffffff
+} else {
+    set legcol(1.0) #ffff00000000
+    set legcol(0.9) #ffff55555555
+    set legcol(0.8) #ffff88888888
+    set legcol(0.7) #ffff99999999
+    set legcol(0.6) #ffffaaaaaaaa
+    set legcol(0.5) #ffffbbbbbbbb
+    set legcol(0.4) #ffffcccccccc
+    set legcol(0.3) #ffffdddddddd
+    set legcol(0.2) #ffffeeeeeeee
+    set legcol(0.1) #ffffffffffff
+}
+
+set xleft [expr $width - $rmarg - $legwid]
+set xright [expr $width - $rmarg]
+set y $ystart
+set dy [expr ($yend - $ystart)/10.]
+set t 1.0
+
+if {$absrho} {
+.c create text [expr $width - $rmarg - .5*$legwid]$c [expr .5*$tmarg]$c -text "|r|" -font -adobe-symbol-*-*-*-*-30-150-100-*-*-150-adobe-fontspecific -anchor n
+} else {
+.c create text [expr $width - $rmarg - .55*$legwid]$c [expr .5*$tmarg]$c -text "r" -font -adobe-symbol-*-*-*-*-30-150-100-*-*-150-adobe-fontspecific -anchor n
+.c create text [expr $width - $rmarg - .38*$legwid]$c [expr .5*$tmarg]$c -text "2" -font -adobe-symbol-*-*-*-*-18-150-100-*-*-150-adobe-fontspecific -anchor n
+}
+
+.c create text [expr $xleft - 0.25]$c $y$c -anchor e -text $t -font -adobe-times-bold-r-normal--16-0-75-75-p-*-iso8859-1
+for {set i 1} {$i < 10} {incr i} {
+    .c create rectangle $xleft$c $y$c $xright$c [expr $y + $dy]$c -fill $legcol($t) -width 2
+    set y [expr $y + $dy]
+    set t [expr $t - 0.1]
+    .c create text [expr $xleft - 0.25]$c $y$c -anchor e -text $t -font -adobe-times-bold-r-normal--16-0-75-75-p-*-iso8859-1
+}
+.c create rectangle $xleft$c $y$c $xright$c [expr $yend]$c -fill $legcol($t) -width 2
+.c create text [expr $xleft - 0.25]$c $yend$c -anchor e -text 0 -font -adobe-times-bold-r-normal--16-0-75-75-p-*-iso8859-1
+
+if {!$nomap} {
+set lruler [expr ($xend + 1.5) - ($xstart - 1.5)]
+set yruler [expr $yend + 1.25]
+.c create line [expr $xstart - 1.5]$c $yruler$c [expr $xend + 1.5]$c $yruler$c -width 2
+set genlen [expr $sloc($nsnp) - $sloc(1)]
+
+set fac 1
+while {$fac < $genlen} {
+    set fac [expr $fac*10]
+}
+set fac [expr $fac/10]
+if {$fac != 1 && [expr $genlen/$fac] < 2} {
+    set fac [expr $fac/10]
+} elseif {$fac != 1 && [expr $genlen/$fac] < 5} {
+    set fac [expr $fac/2]
+}
+set firsttick [expr $sloc(1) - int($sloc(1))%$fac]
+if {$firsttick > $sloc(1)} {
+    set firsttick [expr $firsttick - $fac]
+}
+set lasttick $firsttick
+while {$lasttick < $sloc($nsnp)} {
+    set lasttick [expr $lasttick + $fac]
+}
+set genlen [expr $lasttick - $firsttick]
+
+if {$lfont == ""} {
+    if {$genlen >= 5000} {
+        set lfont adobe-times-bold-r-normal--14-*-*-*-p-*-iso8859-1
+    } else {
+        set lfont adobe-times-bold-r-normal--16-*-*-*-p-*-iso8859-1
+    }
+}
+
+set tick $firsttick
+while {$tick <= $lasttick} {
+    set xtick [expr $xstart - 1.5 + $lruler*($tick - $firsttick)/$genlen]
+    .c create line $xtick$c $yruler$c $xtick$c [expr $yruler + 0.2]$c -width 2
+    if {$genlen < 100000} {
+        .c create text $xtick$c [expr $yruler + 0.3]$c -anchor n -text [expr int($tick)] -font -$lfont
+    } else {
+        .c create text $xtick$c [expr $yruler + 0.3]$c -anchor n -text [expr int($tick/$fac)] -font -$lfont
+    }
+    set tick [expr $tick + $fac]
+}
+
+if {$genlen < 100000} {
+    set xtext "Nucleotide Position"
+} else {
+    set xtext "Nucleotide Position * $fac"
+}
+.c create text [expr ($xstart+$xend)/2.0]$c [expr $height - $tmarg]$c -text $xtext -font -adobe-helvetica-bold-r-normal--18-*-*-*-p-*-iso8859-1
+}
+
+set dx [expr ($xend - $xstart)/double($nsnp)]
+set dy [expr ($yend - $ystart)/double($nsnp)]
+
+set xtopl $xstart
+set xbotr [expr $xstart + $dx]
+
+for {set i 1} {$i <= $nsnp} {incr i} {
+    set ybotr $yend
+    set ytopl [expr $ybotr - $dy]
+    for {set j 1} {$j <= $nsnp} {incr j} {
+        if {!$nonames && $i == 1} {
+            .c create text [expr $xstart - 0.25]$c [expr $ybotr - 0.5*$dy]$c -anchor e -text $sname($j) -font -$nfont
+        }
+        if {!$nomap} {
+            .c create line [expr 0.5*($xbotr + $xtopl)]$c $yend$c [expr $xstart - 1.5 + $lruler*($sloc($i) - $firsttick)/$genlen]$c $yruler$c -width 2
+       }
+        set t 0.1
+        for {set k 0} {$k < 10} {incr k} {
+            if {$dis($i,$j) <= $t} {
+                break
+            }
+            set t [expr $t + 0.1]
+        }
+        .c create rectangle $xtopl$c $ytopl$c $xbotr$c $ybotr$c -fill $legcol($t) -width 2
+        set ybotr $ytopl
+        set ytopl [expr $ybotr - $dy]
+    }
+    set xtopl $xbotr
+    set xbotr [expr $xbotr + $dx]
+}
+
+# Write postscript file if desired
+
+if {"" != $outfile} {
+    .c postscript -file $outfile -rotate t \
+	    -width [expr 1.0 * $width]$c \
+	    -height [expr 1.0 * $height]$c 
+}
+
+exec rm $infile

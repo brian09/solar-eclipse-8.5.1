@@ -1,0 +1,705 @@
+0|Unrelated|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+1|Self|1|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+2|Parent-offspring|2|0|1/2|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+3|Siblings|3|0|1/2|1/8|1|-4|4|0|0|0|0|0|0|0|0|0|0
+4|Grandparent-grandchild|4|1|1/4|1/16|1|-2|0|0|0|0|0|0|0|0|0|0|0
+5|Avuncular|4|1|1/4|1/16|1|-5|8|-4|0|0|0|0|0|0|0|0|0
+6|Half siblings|4|1|1/4|1/16|1|-4|4|0|0|0|0|0|0|0|0|0|0
+7|1st cousins & 2nd cousins|7|0|5/32|63/1024|1|-352/63|248/21|-112/9|472/63|-160/63|32/63|0|0|0|0|0|0
+8|Great grandparent-grandchild|8|1|1/8|3/64|1|-8/3|4/3|0|0|0|0|0|0|0|0|0|0
+9|Grand avuncular|8|1|1/8|3/64|1|-14/3|26/3|-8|8/3|0|0|0|0|0|0|0|0
+10|Half avuncular|8|1|1/8|3/64|1|-4|16/3|-8/3|0|0|0|0|0|0|0|0|0
+11|1st cousins|8|1|1/8|3/64|1|-16/3|10|-8|8/3|0|0|0|0|0|0|0|0
+12|Gr gr grandparent-grandchild|12|1|1/16|7/256|1|-24/7|24/7|-8/7|0|0|0|0|0|0|0|0|0
+13|Great grand avuncular|12|1|1/16|7/256|1|-36/7|80/7|-100/7|64/7|-16/7|0|0|0|0|0|0|0
+14|Half grand avuncular|12|1|1/16|7/256|1|-32/7|8|-48/7|16/7|0|0|0|0|0|0|0|0
+15|1st cousins, 1 rem|12|1|1/16|7/256|1|-40/7|92/7|-108/7|64/7|-16/7|0|0|0|0|0|0|0
+16|Half 1st cousins|12|1|1/16|7/256|1|-32/7|8|-48/7|16/7|0|0|0|0|0|0|0|0
+17|1st cousins, 2 rem|17|1|1/32|15/1024|1|-32/5|88/5|-80/3|344/15|-32/3|32/15|0|0|0|0|0|0
+18|Half 1st cousins, 1 rem|17|1|1/32|15/1024|1|-16/3|176/15|-208/15|128/15|-32/15|0|0|0|0|0|0|0
+19|2nd cousins|17|1|1/32|15/1024|1|-32/5|88/5|-80/3|344/15|-32/3|32/15|0|0|0|0|0|0
+20|2nd cousins, 1 rem|20|1|1/64|31/4096|1|-224/31|720/31|-1328/31|48|-1008/31|384/31|-64/31|0|0|0|0|0
+21|Half 2nd cousins|20|1|1/64|31/4096|1|-192/31|512/31|-768/31|672/31|-320/31|64/31|0|0|0|0|0|0
+22|3rd cousins|22|1|1/128|63/16384|1|-512/63|1888/63|-4096/63|5632/63|-1664/21|928/21|-128/9|128/63|0|0|0|0
+23|Double 1st cousins|23|0|1/4|3/32|1|-16/3|10|-8|8/3|0|0|0|0|0|0|0|0
+24|Double 1st cousins, 1 rem|8|1|1/8|3/64|1|-143/18|32|-731/9|1226/9|-5557/36|1058/9|-58|152/9|-20/9|0|0|0
+25|Double 2nd cousins|12|1|1/16|7/256|1|-176/21|785/21|-2320/21|674/3|-2248/7|4553/14|-4828/21|2284/21|-656/21|88/21|0|0
+26|Half siblings & 1st cousins|26|0|3/8|7/64|1|-32/7|46/7|-24/7|8/7|0|0|0|0|0|0|0|0
+27|Half siblings & half 1st cousins|27|0|5/16|23/256|1|-96/23|120/23|-48/23|16/23|0|0|0|0|0|0|0|0
+28|Half siblings & half avuncular|26|0|3/8|7/64|1|-4|32/7|-8/7|0|0|0|0|0|0|0|0|0
+29|Double half avuncular|23|0|1/4|3/32|1|-4|16/3|-8/3|0|0|0|0|0|0|0|0|0
+30|Double half 1st cousins|30|0|1/8|7/128|1|-32/7|8|-48/7|16/7|0|0|0|0|0|0|0|0
+31|Half 2nd cousins, 1 rem|22|1|1/128|63/16384|1|-64/9|1408/63|-2560/63|320/7|-1984/63|256/21|-128/63|0|0|0|0|0
+32|Half 1st cousins, 2 rem|20|1|1/64|31/4096|1|-192/31|512/31|-768/31|672/31|-320/31|64/31|0|0|0|0|0|0
+33|Half gr grand avuncular|17|1|1/32|15/1024|1|-16/3|176/15|-208/15|128/15|-32/15|0|0|0|0|0|0|0
+34|Half 1st cousins & 2nd cousins|34|0|3/32|43/1024|1|-224/43|488/43|-592/43|408/43|-160/43|32/43|0|0|0|0|0|0
+35|5th cousins|35|0|1/2048|1023/4194304|1|-4096/341|23040/341|-79872/341|567296/1023|-962560/1023|1197056/1023|-1097728/1023|736256/1023|-352256/1023|114176/1023|-2048/93|2048/1023
+36|Half avuncular & 1st cousins, 1 rem|36|0|3/16|19/256|1|-88/19|156/19|-140/19|64/19|-16/19|0|0|0|0|0|0|0
+37|Half siblings & 1st cousins, 1 rem|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+38|1st cousins & 1st cousins, 1 rem|38|1|3/16|3/64|1|-16/3|10|-8|8/3|0|0|0|0|0|0|0|0
+39|Half 1st cousins & 1st cousins, 1 rem|30|-1|1/8|7/128|1|0|0|0|0|0|0|0|0|0|0|0|0
+40|3rd cousins, 1 rem|40|1|1/256|127/65536|1|-1152/127|4800/127|-11968/127|19456/127|-21248/127|15552/127|-7630/127|2048/127|-256/127|0|0|0
+41|1st cousins, 3 rem|20|1|1/64|31/4096|1|-224/31|720/31|-1328/31|48|-1008/31|384/31|-64/31|0|0|0|0|0
+42|2nd cousins, 2 rem|22|1|1/128|63/16384|1|-512/63|1888/63|-4096/63|5632/63|-1664/21|928/21|-128/9|128/63|0|0|0|0
+43|Gr gr grand avuncular|17|1|1/32|15/1024|1|-88/15|232/15|-24|328/15|-32/3|32/15|0|0|0|0|0|0
+44|1st cousins, 1 rem & 1st cousins, 2 rem|34|-1|3/32|43/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+45|1st cousins, 2 rem & 2nd cousins, 1 rem|45|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+46|1st cousins, 1 rem & 2nd cousins, 1 rem|46|0|5/64|143/4096|1|-800/143|2000/143|-2864/143|2384/143|-1072/143|192/143|0|0|0|0|0|0
+47|2nd cousins, 1 rem & 3rd cousins, 1 rem|47|-1|5/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+48|Double 3rd cousins, 1 rem|22|-1|1/128|63/16384|1|0|0|0|0|0|0|0|0|0|0|0|0
+49|Double 2nd cousins, 1 rem|49|0|1/32|31/2048|1|-224/31|720/31|-1328/31|48|-1008/31|384/31|-64/31|0|0|0|0|0
+50|1st cousins, 4 rem|22|1|1/128|63/16384|1|-512/63|1888/63|-4096/63|5632/63|-1664/21|928/21|-128/9|128/63|0|0|0|0
+51|2nd cousins, 3 rem|40|1|1/256|127/65536|1|-1152/127|4800/127|-11968/127|19456/127|-21248/127|15552/127|-7630/127|2048/127|-256/127|0|0|0
+52|3rd cousins, 2 rem|52|1|1/512|255/262144|1|-512/51|3968/85|-33536/255|62848/255|-27136/85|14720/51|-45824/255|6272/85|-1536/85|512/255|0|0
+53|2nd cousins & 2nd cousins, 1 rem|53|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+54|Half 1st cousins, 1 rem & 2nd cousins|12|-1|1/16|7/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+55|2nd cousins, 2 rem & 3rd cousins|7|-1|5/32|63/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+56|2nd cousins & 3rd cousins|56|0|5/128|303/16384|1|-640/101|5600/303|-9728/303|10496/303|-2304/101|2528/303|-128/101|0|0|0|0|0
+57|1st cousins, 1 rem & 3rd cousins|57|-1|9/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+58|2nd cousins, 1 rem & 3rd cousins|58|-1|3/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+59|1st cousins, 5 rem|40|1|1/256|127/65536|1|-1152/127|4800/127|-11968/127|19456/127|-21248/127|15552/127|-7630/127|2048/127|-256/127|0|0|0
+60|Gr gr gr gr grandparent-grandchild|20|1|1/64|31/4096|1|-160/31|320/31|-320/31|160/31|-32/31|0|0|0|0|0|0|0
+61|Double half grand avuncular|30|-1|1/8|7/128|1|0|0|0|0|0|0|0|0|0|0|0|0
+62|Half avuncular & triple half 1st cousins, 1 rem|62|-1|7/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+63|Half 1st cousins & triple half 2nd cousins|63|-1|7/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+64|1st cousins & 4th cousins|64|-1|33/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+65|1st cousins & double half 2nd cousins|7|-1|5/32|63/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+66|1st cousins & double 2nd cousins|66|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+67|1st cousins & double half 1st cousins, 1 rem|67|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+68|1st cousins & double 3rd cousins|68|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+69|1st cousins & double 2nd cousins, 1 rem|7|-1|5/32|63/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+70|1st cousins & half 1st cousins|70|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+71|Avuncular & half avuncular|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+72|Half avuncular & 1st cousins|23|-1|1/4|3/32|1|0|0|0|0|0|0|0|0|0|0|0|0
+73|4th cousins|52|1|1/512|255/262144|1|-512/51|3968/85|-33536/255|62848/255|-27136/85|14720/51|-45824/255|6272/85|-1536/85|512/255|0|0
+74|4th cousins, 1 rem|74|1|1/1024|511/1048576|1|-5632/511|28928/511|-90880/511|192768/511|-41216/73|44288/73|-238848/511|129280/511|-46848/511|10240/511|-1024/511|0
+75|Half 1st cousins & half avuncular|75|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+76|Half 3rd cousins|40|1|1/256|127/65536|1|-1024/127|3712/127|-7936/127|10880/127|-9728/127|5504/127|-1792/127|256/127|0|0|0|0
+77|Half 1st cousins, 3 rem|22|-1|1/128|63/16384|1|0|0|0|0|0|0|0|0|0|0|0|0
+78|Half gr gr grand avuncular|20|-1|1/64|31/4096|1|0|0|0|0|0|0|0|0|0|0|0|0
+79|Gr gr gr grandparent-grandchild|17|1|1/32|15/1024|1|-64/15|32/5|-64/15|16/15|0|0|0|0|0|0|0|0
+80|1st cousins & half 2nd cousins|80|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+81|Half gr grand avuncular & half gr gr grand avuncular|81|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+82|Half avuncular & 1st cousins, 2 rem|7|-1|5/32|63/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+83|1st cousins & half 1st cousins, 1 rem|7|-1|5/32|63/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+84|Half 1st cousins, 2 rem & half 1st cousins, 3 rem|84|-1|3/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+85|Half 3rd cousins, 1 rem|52|-1|1/512|255/262144|1|0|0|0|0|0|0|0|0|0|0|0|0
+86|Half avuncular & half grand avuncular|86|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+87|Half grand avuncular & half gr grand avuncular|34|-1|3/32|43/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+88|Half 1st cousins & half 1st cousins, 1 rem|34|-1|3/32|43/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+89|Half 1st cousins, 1 rem & half 1st cousins, 2 rem|89|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+90|Half 2nd cousins & half 3rd cousins|90|0|5/256|623/65536|1|-4096/623|11904/623|-20224/623|21632/623|-14848/623|6528/623|-256/89|256/623|0|0|0|0
+91|1st cousins & 3rd cousins|91|-1|17/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+92|1st cousins & 2nd cousins, 1 rem|92|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+93|2nd cousins & half 2nd cousins|93|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+94|1st cousins, 1 rem & 2nd cousins|34|-1|3/32|43/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+95|Half 2nd cousins, 2 rem|40|-1|1/256|127/65536|1|0|0|0|0|0|0|0|0|0|0|0|0
+96|Half 1st cousins & 2nd cousins, 1 rem|96|-1|5/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+97|2nd cousins, 4 rem|52|1|1/512|255/262144|1|-512/51|3968/85|-33536/255|62848/255|-27136/85|14720/51|-45824/255|6272/85|-1536/85|512/255|0|0
+98|3rd cousins, 3 rem|74|1|1/1024|511/1048576|1|-5632/511|28928/511|-90880/511|192768/511|-41216/73|44288/73|-238848/511|129280/511|-46848/511|10240/511|-1024/511|0
+99|Other relationships|99|-1|9.9|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+101|Double gr grandparent-grandchild|23|-1|1/4|3/32|1|0|0|0|0|0|0|0|0|0|0|0|0
+102|Double grandparent-grandchild|102|-1|1/2|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+103|Grandparent-grandchild & half grand avuncular|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+104|Parent-offspring & half avuncular|104|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+105|Half siblings & triple half 1st cousins|105|-1|7/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+106|Parent-offspring & double half 1st cousins, 1 rem|106|-1|9/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+107|Double gr gr gr grandparent-grandchild|12|-1|1/16|7/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+108|Double gr gr grandparent-grandchild|8|-1|1/8|3/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+109|Gr gr grandparent-grandchild & gr gr grand avuncular|34|-1|3/32|43/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+110|Gr grandparent-grandchild & gr grand avuncular|110|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+111|Gr grandparent-grandchild & 1st cousins, 3 rem|111|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+112|Grandparent-grandchild & 2nd cousins, 2 rem|112|-1|33/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+113|Grandparent-grandchild & 1st cousins, 2 rem|113|-1|9/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+114|Parent-offspring & 2nd cousins, 1 rem|114|-1|33/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+115|Siblings & double 3rd cousins|115|-1|33/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+116|Parent-offspring & double 3rd cousins, 1 rem|116|-1|65/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+117|Avuncular & double 3rd cousins, 1 rem|117|-1|33/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+118|Siblings & double half 1st cousins|118|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+119|Avuncular & double half 1st cousins, 1 rem|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+120|Grandparent-grandchild & grand avuncular|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+121|Parent-offspring & avuncular|121|-1|3/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+122|Siblings & double 1st cousins|122|-1|3/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+123|Parent-offspring & double 1st cousins, 1 rem|123|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+124|Avuncular & double 1st cousins, 1 rem|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+125|Grandparent-grandchild & gr grandparent-grandchild|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+126|Parent-offspring & grandparent-grandchild|126|1|3/4|0|-1|0|0|0|0|0|0|0|0|0|0|0|0
+127|Parent-offspring & half siblings|127|-1|3/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+128|Grandparent-grandchild & half avuncular|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+129|Siblings & double half avuncular|129|-1|3/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+130|Parent-offspring & half grand avuncular & half 1st cousins|130|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+131|Avuncular & half grand avuncular & half 1st cousins|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+132|Parent-offspring & 1st cousins, 1 rem|132|-1|9/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+133|Siblings & double 2nd cousins|133|-1|9/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+134|Avuncular & double 2nd cousins, 1 rem|134|-1|9/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+135|Parent-offspring & double 2nd cousins, 1 rem|135|-1|17/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+136|Great grandparent-grandchild & grand avuncular|4|-1|1/4|13/80|1|0|0|0|0|0|0|0|0|0|0|0|0
+137|Grandparent-grandchild & avuncular|137|-1|1/2|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+138|Grandparent-grandchild & gr grand avuncular|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+139|Grandparent-grandchild & 1st cousins, 1 rem|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+140|Parent-offspring & grand avuncular|140|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+141|Parent-offspring & 1st cousins|141|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+142|Avuncular & 2nd cousins & 1st cousins, 2 rem|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+143|Siblings & double 1st cousins, 1 rem|143|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+144|Parent-offspring & 2nd cousins & 1st cousins, 2 rem|144|-1|9/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+145|Gr grandparent-grandchild & gr gr grandparent-grandchild|145|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+146|Half siblings & avuncular|146|-1|1/2|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+147|Half sibs & double half avuncular & half 1st cousins|147|-1|9/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+148|Half avuncular & double half 1st cousins|148|-1|1/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+149|Half sibs & 1st cousins & double half 1st cousins|149|-1|1/2|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+150|Half sibs & half avuncular & half 1st cousins|150|-1|7/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+151|Half sibs & double half avuncular & 1st cousins|151|-1|5/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+152|Siblings & double half 2nd cousins|152|-1|17/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+153|Siblings & double half 1st cousins, 1 rem|153|-1|9/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+154|Avuncular & 1st cousins, 1 rem|27|-1|5/16|23/256|1|0|0|0|0|0|0|0|0|0|0|0|0
+155|Grand avuncular & 1st cousins, 2 rem|7|-1|5/32|63/1024|1|0|0|0|0|0|0|0|0|0|0|0|0
+156|Avuncular & grand avuncular|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+157|Grand avuncular & gr grand avuncular|157|-1|3/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+158|Avuncular & 1st cousins|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+159|Avuncular & 1st cousins, 1 rem|26|-1|3/8|7/64|1|0|0|0|0|0|0|0|0|0|0|0|0
+160|Siblings & double 2nd cousins, 1 rem|160|-1|17/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+161|Siblings & double 4th cousins|161|-1|129/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+162|Triple half 1st cousins|162|0|3/32|47/1024|1|-32/7|8|-48/7|16/7|0|0|0|0|0|0|0|0
+163|4th cousins, 2 rem|35|1|1/2048|1023/4194304|1|-4096/341|23040/341|-79872/341|567296/1023|-962560/1023|1197056/1023|-1097728/1023|736256/1023|-352256/1023|114176/1023|-2048/93|2048/1023
+164|5th cousins, 1 rem|164|1|1/4096|2047/16777216|1|-26624/2047|162816/2047|-617472/204|1613824/2047|-3059712/2047|4319232/2047|-4589568/2047|3667968/2047|-2177024/2047|932864/2047|-3072/23|49152/2047|-4096/2047
+165|Half siblings & 2nd cousins|165|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+166|Half siblings & 3rd cousins, 1 rem|166|-1|65/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+167|Half siblings & 4th cousins|167|-1|129/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+168|Half avuncular & half 2nd cousins|168|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+169|Half avuncular & half 2nd cousins, 1 rem|169|-1|17/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+170|Half avuncular & 2nd cousins, 2 rem|170|-1|17/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+171|Half avuncular & 3rd cousins, 1 rem|171|-1|33/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+172|Half grand avuncular & gr grand avuncular|172|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+173|Half grand avuncular & 1st cousins, 1 rem|173|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+174|Half grand avuncular & 1st cousins, 2 rem|174|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+175|Half grand avuncular & 1st cousins, 3 rem|175|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+176|Half grand avuncular & 2nd cousins, 1 rem|176|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+177|Half grand avuncular & 2nd cousins, 2 rem|177|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+178|Half grand avuncular & 3rd cousins, 1 rem|178|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+179|Half gr grand avuncular & 1st cousins, 2 rem|179|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+180|Half gr grand avuncular & 1st cousins, 3 rem|180|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+181|Half gr grand avuncular & 2nd cousins, 2 rem|181|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+182|Double half gr grand avuncular|182|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+183|Double half gr gr grand avuncular|183|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+184|Half 1st cousins & half 3rd cousins|184|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+185|Half 1st cousins & 3rd cousins, 1 rem|185|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+186|Half 1st cousins, 1 rem & 2nd cousins, 2 rem|186|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+187|Half 1st cousins, 1 rem & 3rd cousins|187|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+188|Half 1st cousins, 1 rem & 3rd cousins, 1 rem|188|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+189|Double half 1st cousins, 1 rem|189|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+190|Half 1st cousins, 2 rem & half 2nd cousins|190|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+191|Half 1st cousins, 2 rem & half 2nd cousins, 2 rem|191|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+192|Half 1st cousins, 2 rem & 2nd cousins|192|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+193|Half 1st cousins, 2 rem & 2nd cousins, 1 rem|193|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+194|Half 1st cousins, 2 rem & 2nd cousins, 2 rem|194|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+195|Half 1st cousins, 2 rem & 3rd cousins|195|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+196|Half 1st cousins, 2 rem & 3rd cousins, 1 rem|196|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+197|Double half 1st cousins, 2 rem|197|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+198|Double half 1st cousins, 3 rem|198|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+199|Half 2nd cousins & 2nd cousins, 2 rem|199|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+200|Self - child of avuncular mating|200|-1|9/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+201|Self - child of cousins|201|-1|17/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+202|Self - child of 2nd cousins|202|-1|65/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+203|Self - child of siblings|203|-1|5/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+204|Self - child of parent-offspring|204|-1|5/4|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+205|Self - child of half siblings|205|-1|9/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+210|Self - unknown inbred mating type|210|-1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+211|Half 2nd cousins & 3rd cousins|211|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+212|Half 2nd cousins & 3rd cousins, 1 rem|212|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+213|Half 2nd cousins & 4th cousins|213|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+214|Half 2nd cousins, 1 rem & half 2nd cousins, 2 rem|214|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+215|Half 2nd cousins, 1 rem & half 3rd cousins, 1 rem|215|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+216|Half 2nd cousins, 1 rem & 3rd cousins, 1 rem|216|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+217|Half 2nd cousins, 1 rem & 4th cousins|217|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+218|Double half 2nd cousins, 2 rem|218|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+219|Half 3rd cousins & half 3rd cousins, 1 rem|219|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+220|Half 3rd cousins & 3rd cousins, 1 rem|220|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+221|Half 3rd cousins & 4th cousins|221|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+222|Double half 3rd cousins, 1 rem|222|-1|1/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+223|Parent-offspring & half 1st cousins, 1 rem|223|-1|17/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+224|Parent-offspring & half 1st cousins, 2 rem|224|-1|33/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+225|Parent-offspring & half 2nd cousins|225|-1|33/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+226|Parent-offspring & 2nd cousins|226|-1|17/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+227|Grandparent-grandchild & half gr grand avuncular|227|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+228|Grandparent-grandchild & half 1st cousins, 1 rem|228|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+229|Gr grandparent-grandchild & half grand avuncular|229|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+230|Avuncular & half 1st cousins, 1 rem|230|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+231|Avuncular & half 1st cousins, 2 rem|231|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+232|Avuncular & half 2nd cousins|232|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+233|Avuncular & 1st cousins, 2 rem|233|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+234|Avuncular & 2nd cousins|234|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+235|Avuncular & 3rd cousins, 1 rem|235|-1|65/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+236|Grand avuncular & half grand avuncular|236|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+237|Grand avuncular & half gr grand avuncular|237|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+238|Grand avuncular & half 1st cousins, 1 rem|238|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+239|Grand avuncular & 1st cousins, 1 rem|239|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+240|Gr grand avuncular & gr gr grand avuncular|240|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+241|1st cousins, 1 rem & half 1st cousins, 2 rem|241|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+242|1st cousins, 1 rem & half 1st cousins, 3 rem|242|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+243|1st cousins, 1 rem & half 2nd cousins, 1 rem|243|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+244|1st cousins, 1 rem & half 3rd cousins|244|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+245|1st cousins, 1 rem & 1st cousins, 3 rem|245|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+246|1st cousins, 1 rem & 2nd cousins, 3 rem|246|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+247|1st cousins, 1 rem & 3rd cousins, 2 rem|247|-1|33/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+248|1st cousins, 1 rem & 4th cousins|248|-1|33/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+249|1st cousins, 1 rem & 4th cousins, 1 rem|249|-1|65/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+250|Avuncular & 2nd cousins, 1 rem|250|-1|17/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+251|Grand avuncular & 2nd cousins, 2 rem|251|-1|17/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+252|Great grand avuncular & 1st cousins, 3 rem|252|-1|5/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+253|Double gr grand avuncular|253|-1|1/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+254|Double gr gr grand avuncular|254|-1|1/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+255|1st cousins & half 2nd cousins, 1 rem|255|-1|17/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+256|1st cousins, 1 rem & 3rd cousins, 1 rem|256|-1|17/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+257|1st cousins, 1 rem & half 1st cousins, 1 rem|257|-1|3/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+258|1st cousins, 1 rem & half 2nd cousins|258|-1|5/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+259|1st cousins, 1 rem & half 2nd cousins & half 2nd cousins, 1 rem|259|-1|1/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+260|1st cousins, 2 rem & 2nd cousins|260|-1|1/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+261|1st cousins, 2 rem & 2nd cousins, 2 rem|261|-1|5/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+262|1st cousins, 2 rem & half 1st cousins, 2 rem|262|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+263|1st cousins, 3 rem & 2nd cousins, 1 rem|263|-1|1/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+264|2nd cousins & 4th cousins|264|-1|17/512|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+265|2nd cousins & half 3rd cousins|265|-1|9/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+266|2nd cousins, 1 rem & half 2nd cousins, 1 rem|266|-1|3/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+267|Double 2nd cousins, 2 rem|267|-1|1/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+268|3rd cousins & 4th cousins|268|-1|5/512|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+269|3rd cousins & half 3rd cousins|269|-1|3/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+270|Double 3rd cousins|270|-1|1/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+271|Half siblings & 2nd cousins, 1 rem|271|-1|17/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+272|Half siblings & 3rd cousins|272|-1|33/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+273|Half avuncular & 2nd cousins, 1 rem|273|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+274|Half avuncular & half 1st cousins, 1 rem|274|0|5/32|63/1024|1|-272/63|48/7|-16/3|128/63|-32/63|0|0|0|0|0|0|0
+275|Half grand avunc & half 1st cousins, 1 rem & half 1st cousins, 2 rem|275|-1|7/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+276|Half grand avuncular & half 1st cousins, 2 rem|276|-1|5/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+277|Half 1st cousins & 2nd cousins & 3rd cousins|277|-1|13/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+278|Half 1st cousins & 3rd cousins|278|-1|9/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+279|Half 1st cousins & half 2nd cousins|279|-1|5/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+280|Half 1st cousins, 1 rem & 1st cousins, 2 rem|280|-1|1/16|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+281|Half 1st cousins, 1 rem & half 2nd cousins & half 2nd cousins, 1 rem|281|-1|5/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+282|Half 1st cousins, 1 rem & half 2nd cousins, 1 rem|282|-1|1/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+283|Half 2nd cousins & 2nd cousins, 1 rem|283|-1|1/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+284|Half 2nd cousins & half 2nd cousins, 1 rem|284|-1|3/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+285|Half 2nd cousins, 1 rem & 3rd cousins|285|-1|1/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+286|Half 2nd cousins, 1 rem & half 3rd cousins|286|-1|3/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+287|Half siblings & half 2nd cousins|287|-1|17/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+288|Parent-offspring & 2nd cousins, 2 rem|288|-1|65/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+289|Grandparent-grandchild & 1st cousins, 3 rem|289|-1|17/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+290|Gr grandparent-grandchild & gr gr grand avuncular|290|-1|5/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+291|Gr gr grandparent-grandchild & gr gr gr grandparent-grandchild|291|-1|3/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+292|Avuncular & 2nd cousins, 2 rem|292|-1|33/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+293|Grand avuncular & 1st cousins, 3 rem|293|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+294|Gr gr grandparent-grandchild & gr grand avuncular|294|-1|1/8|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+295|1st cousins & 3rd cousins, 1 rem|295|-1|33/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+296|1st cousins, 1 rem & 2nd cousins, 2 rem|296|-1|9/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+297|1st cousins, 2 rem & gr grandparent-grandchild|297|-1|5/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+298|1st cousins, 2 rem & gr grand avuncular|298|-1|3/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+299|1st cousins, 2 rem & 1st cousins, 3 rem|299|-1|3/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+300|Identical sib pair|300|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+301|2nd cousins & half avuncular|301|-1|5/32|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+302|Gr grandparent-grandchild & 2nd cousins, 1 rem|302|-1|17/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+303|2nd cousins, 1 rem & grand avuncular|303|-1|9/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+304|Parent-offspring & 3rd cousins|304|-1|65/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+305|Avuncular & 3rd cousins|305|-1|33/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+306|2nd cousins, 1 rem & 4th cousins|306|-1|9/512|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+307|Self & double 3rd cousins, 1 rem|307|-1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+308|1st cousins & 2nd cousins & 2nd cousins, 1 rem|308|-1|11/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+309|1st cousins, 1 rem & 2nd cousins, 1 rem & 2nd cousins, 2 rem|309|-1|11/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+310|Double 1st cousins, 1 rem & 2nd cousins, 2 rem|310|-1|17/128|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+311|Double 2nd cousins & 2nd cousins, 1 rem|311|-1|5/64|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+312|Double 2nd cousins & 3rd cousins, 1 rem|312|-1|17/256|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+313|Double 2nd cousins, 1 rem & 4th cousins|313|-1|17/512|0|1|0|0|0|0|0|0|0|0|0|0|0|0
+314|1st cousins, 2 rem & half 1st cousins, 3 rem|314|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+315|1st cousins, 2 rem & half 2nd cousins, 1 rem|315|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+316|1st cousins, 2 rem & half 2nd cousins, 2 rem|316|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+317|1st cousins, 2 rem & 2nd cousins, 3 rem|317|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+318|1st cousins, 2 rem & 3rd cousins|318|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+319|1st cousins, 2 rem & 3rd cousins, 1 rem|319|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+320|1st cousins, 2 rem & 3rd cousins, 2 rem|320|-1|17/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+321|1st cousins, 3 rem & half 1st cousins, 3 rem|321|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+322|1st cousins, 3 rem & 1st cousins, 4 rem|322|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+323|1st cousins, 3 rem & 2nd cousins, 2 rem|323|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+324|1st cousins, 3 rem & 3rd cousins|324|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+325|Double 1st cousins, 4 rem|325|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+326|2nd cousins & half 2nd cousins, 1 rem|326|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+327|2nd cousins & half 2nd cousins, 2 rem|327|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+328|2nd cousins & half 3rd cousins, 1 rem|328|-1|17/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+329|2nd cousins & 2nd cousins, 2 rem|329|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+330|2nd cousins & 3rd cousins, 2 rem|330|-1|17/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+331|2nd cousins & 4th cousins, 1 rem|331|-1|33/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+332|2nd cousins, 1 rem & half 2nd cousins, 2 rem|332|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+333|2nd cousins, 1 rem & half 3rd cousins|333|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+334|2nd cousins, 1 rem & half 3rd cousins, 1 rem|334|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+335|2nd cousins, 1 rem & 2nd cousins, 3 rem|335|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+336|2nd cousins, 1 rem & 3rd cousins, 2 rem|336|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+337|2nd cousins, 1 rem & 4th cousins, 1 rem|337|-1|17/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+338|2nd cousins, 2 rem & half 2nd cousins, 2 rem|338|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+339|2nd cousins, 2 rem & 2nd cousins, 3 rem|339|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+340|2nd cousins, 2 rem & 3rd cousins, 1 rem|340|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+341|2nd cousins, 2 rem & 3rd cousins, 2 rem|341|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+342|2nd cousins, 2 rem & 4th cousins|342|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+343|2nd cousins, 2 rem & 4th cousins, 1 rem|343|-1|9/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+344|2nd cousins, 3 rem & 3rd cousins|344|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+345|2nd cousins, 3 rem & 3rd cousins, 1 rem|345|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+346|2nd cousins, 3 rem & 3rd cousins, 2 rem|346|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+347|Double 2nd cousins, 3 rem|347|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+348|3rd cousins & half 3rd cousins, 1 rem|348|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+349|3rd cousins & 3rd cousins, 2 rem|349|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+351|Half gr gr gr grand avuncular|351|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+352|Half 1st cousins, 4 rem|352|-1|1/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+353|Half 2nd cousins, 3 rem|353|-1|1/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+354|Half 3rd cousins, 2 rem|354|-1|1/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+355|Half 4th cousins|355|-1|1/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+356|Half 4th cousins, 1 rem|356|-1|1/2048|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+357|3rd cousins & 4th cousins, 1 rem|357|-1|9/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+358|3rd cousins, 1 rem & half 3rd cousins, 1 rem|358|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+359|3rd cousins, 1 rem & 3rd cousins, 2 rem|359|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+360|3rd cousins, 1 rem & 4th cousins, 1 rem|360|-1|5/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+361|3rd cousins, 2 rem & 4th cousins|361|-1|1/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+362|3rd cousins, 2 rem & 4th cousins, 1 rem|362|-1|3/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+363|Double 3rd cousins, 2 rem|363|-1|1/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+364|4th cousins & 4th cousins, 1 rem|364|-1|3/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+365|Double 4th cousins, 1 rem|365|-1|1/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+366|Half sibs & half avuncular & 4th cousins|366|-1|193/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+367|Half siblings & double 2nd cousins, 1 rem|367|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+368|Half siblings & double 3rd cousins|368|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+369|Half avuncular & 1st cousins, 1 rem & 2nd cousins, 1 rem|369|-1|13/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+370|Half avuncular & 1st cousins, 1 rem & 3rd cousins, 1 rem|370|-1|49/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+371|Half avuncular & double 1st cousins, 2 rem|371|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+372|Half avuncular & 2nd cousins & 2nd cousins, 1 rem|372|-1|11/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+373|Half avuncular & 2nd cousins, 1 rem & 2nd cousins, 2 rem|373|-1|19/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+374|Half avuncular & 2nd cousins, 1 rem & 3rd cousins, 1 rem|374|-1|37/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+375|Half avuncular & double 2nd cousins, 1 rem|375|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+376|Half avuncular & 3rd cousins & 3rd cousins, 1 rem|376|-1|35/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+377|Half grand avuncular & 1st cousins, 1 rem & 1st cousins, 2 rem|377|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+378|Half grand avuncular & double 1st cousins, 1 rem|378|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+379|Half grand avuncular & double 1st cousins, 2 rem|379|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+380|Half grand avuncular & double 2nd cousins, 2 rem|380|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+381|Half gr grand avuncular & 1st cousins, 2 rem & 1st cousins, 3 rem|381|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+382|Half gr grand avuncular & double 1st cousins, 3 rem|382|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+383|Half gr grand avuncular & double 2nd cousins, 3 rem|383|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+384|Double half gr grand avuncular & 1st cousins, 3 rem|384|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+385|Half 1st cousins & half 1st cousins, 1 rem & 2nd cousins|385|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+386|Half 1st cousins & half 2nd cousins, 1 rem & 4th cousins|386|-1|37/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+387|Half 1st cousins & 1st cousins, 1 rem & 2nd cousins|387|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+388|Half 1st cousins & 1st cousins, 1 rem & 3rd cousins|388|-1|17/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+389|Half 1st cousins & 1st cousins, 1 rem & 3rd cousins, 1 rem|389|-1|33/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+390|Half 1st cousins & 2nd cousins & 2nd cousins, 1 rem|390|-1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+391|Half 1st cousins & 2nd cousins & 4th cousins|391|-1|49/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+392|Half 1st cousins & double 2nd cousins|392|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+393|Half 1st cousins & 2nd cousins, 1 rem & 3rd cousins|393|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+394|Half 1st cousins & double 2nd cousins, 1 rem|394|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+395|Half 1st cousins & 3rd cousins & 3rd cousins, 1 rem|395|-1|19/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+396|Half 1st cousins & 3rd cousins & 4th cousins|396|-1|37/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+397|Half 1st cousins & double 3rd cousins|397|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+398|Half 1st cousins & double 3rd cousins, 1 rem|398|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+399|Half 1st cousins, 1 rem & half 2nd cousins & 2nd cousins, 1 rem|399|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+400|Half 1st cousins, 1 rem & half 2nd cousins & 3rd cousins|400|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+401|Gr gr gr grand avuncular|20|1|1/64|31/4096|1|-208/31|640/31|-1184/31|1376/31|-976/31|384/31|-64/31|0|0|0|0|0
+402|Gr gr gr gr grand avuncular|22|1|1/128|63/16384|1|-160/21|1696/63|-1216/21|5120/63|-224/3|2720/63|-128/9|128/63|0|0|0|0
+403|Gr gr gr gr gr grandparent-grandchild|22|1|1/128|63/16384|1|-128/21|320/31|-1280/63|320/31|-128/21|64/63|0|0|0|0|0|0
+404|Triple 2nd cousins|404|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+405|Triple 1st cousins, 2 rem|405|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+406|Triple 2nd cousins, 1 rem|406|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+407|Triple gr grand avuncular|407|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+408|Triple 1st cousins, 1 rem|408|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+409|Triple 2nd cousins, 2 rem|409|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+410|Gr grandparent-grandchild & double gr grand avuncular|410|-1|1/4|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+411|Grandparent-grandchild & gr grand avuncular & 1st cousins, 3 rem|411|-1|21/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+412|Double grand avuncular|412|-1|1/4|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+413|Double 1st cousins, 2 rem|413|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+414|Double 1st cousins, 3 rem|414|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+415|Avuncular & 1st cousins, 2 rem & 2nd cousins, 2 rem|415|-1|37/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+416|Parent-offspring & 1st cousins, 2 rem|416|-1|17/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+417|2nd cousins, 1 rem & 2nd cousins, 2 rem|417|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+418|Grand avuncular & double 2nd cousins, 2 rem|418|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+419|Triple 3rd cousins|419|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+420|Triple 3rd cousins, 1 rem|420|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+421|Triple 4th cousins|421|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+422|1st cousins, 1 rem & double 3rd cousins, 1 rem|422|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+423|Grand avuncular & double 2nd cousins, 2 rem|423|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+424|Quadruple 3rd cousins|424|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+425|Quadruple 3rd cousins, 1 rem|425|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+426|Quadruple 4th cousins|426|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+427|Double 2nd cousins, 1 rem & double 3rd cousins, 1 rem|427|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+428|Double 2nd cousins & double 3rd cousins|428|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+429|1st cousins & triple 2nd cousins|429|-1|7/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+430|1st cousins, 1 rem & triple 3rd cousins, 1 rem|430|-1|19/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+431|3rd cousins & quadruple 3rd cousins, 1 rem|431|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+432|Parent-offspring & quadruple 2nd cousins, 1 rem|432|-1|9/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+433|Avuncular & quadruple 2nd cousins, 1 rem|433|-1|5/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+434|Triple 2nd cousins, 1 rem & triple 3rd cousins, 1 rem|434|-1|15/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+435|Double 4th cousins|435|-1|1/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+436|3rd cousins & 3rd cousins, 1 rem|436|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+437|2nd cousins & 3rd cousins, 1 rem|437|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+438|Half avuncular & 3rd cousins|438|-1|17/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+439|Parent-offspring & 3rd cousins, 1 rem|439|-1|129/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+440|3rd cousins, 1 rem & 4th cousins|440|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+441|Half 1st cousins, 1 rem & 2nd cousins, 1 rem|441|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+442|Half 1st cousins, 1 rem & 1st cousins, 2 rem & 2nd cousins, 1 rem|442|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+443|Half 1st cousins, 1 rem & double 1st cousins, 2 rem|443|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+444|Half 1st cousins, 1 rem & 2nd cousins & 2nd cousins, 1 rem|444|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+445|Half 1st cousins, 1 rem & double 2nd cousins|445|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+446|Half 1st cousins, 1 rem & 2nd cousins, 1 rem & 3rd cousins, 1 rem|446|-1|13/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+447|Half 1st cousins, 1 rem & double 2nd cousins, 1 rem|447|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+448|Half 1st cousins, 1 rem & double 3rd cousins|448|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+449|Half 1st cousins, 1 rem & double 3rd cousins, 1 rem|449|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+450|Half 1st cousins, 1 rem & double 4th cousins|450|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+451|Double half 1st cousins, 1 rem & 2nd cousins, 1 rem|451|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+452|Half 1st cousins, 2 rem & half 2nd cousins & 3rd cousins|452|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+453|Half 1st cousins, 2 rem & half 2nd cousins, 1 rem & 2nd cousins, 2 rem|453|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+454|Half 1st cousins, 2 rem & half 2nd cousins, 1 rem & 3rd cousins, 1 rem|454|-1|7/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+455|Half 1st cousins, 2 rem & double half 2nd cousins, 2 rem|455|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+456|Half 1st cousins, 2 rem & 2nd cousins, 1 rem & 2nd cousins, 2 rem|456|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+457|Half 1st cousins, 2 rem & double 2nd cousins, 2 rem|457|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+458|Half 1st cousins, 2 rem & double 3rd cousins, 1 rem|458|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+459|Half 1st cousins, 2 rem & double 3rd cousins, 2 rem|459|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+460|Double half 1st cousins, 2 rem & 2nd cousins, 2 rem|460|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+461|Half 2nd cousins & half 2nd cousins, 1 rem & 3rd cousins, 1 rem|461|-1|7/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+462|Half 2nd cousins & 2nd cousins, 1 rem & 3rd cousins|462|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+463|Half 2nd cousins & 2nd cousins, 1 rem & 3rd cousins, 1 rem|463|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+464|Half 2nd cousins & 2nd cousins, 1 rem & 4th cousins, 1 rem|464|-1|33/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+465|Half 2nd cousins & double 2nd cousins, 1 rem|465|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+466|Half 2nd cousins & 3rd cousins & 3rd cousins, 1 rem|466|-1|7/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+467|Half 2nd cousins & double 3rd cousins|467|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+468|Half 2nd cousins & double 3rd cousins, 1 rem|468|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+469|Half 2nd cousins & double 4th cousins|469|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+470|Half 2nd cousins, 1 rem & half 3rd cousins & 4th cousins|470|-1|7/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+471|Half 2nd cousins, 1 rem & double half 3rd cousins, 1 rem|471|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+472|Half 2nd cousins, 1 rem & 2nd cousins, 2 rem & 3rd cousins, 1 rem|472|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+473|Half 2nd cousins, 1 rem & 3rd cousins & 3rd cousins, 1 rem|473|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+474|Half 2nd cousins, 1 rem & 3rd cousins & 4th cousins|474|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+475|Half 2nd cousins, 1 rem & double 3rd cousins|475|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+476|Half 2nd cousins, 1 rem & 3rd cousins, 1 rem & 4th cousins|476|-1|7/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+477|Half 2nd cousins, 1 rem & double 3rd cousins, 1 rem|477|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+478|Half 2nd cousins, 1 rem & double 4th cousins|478|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+479|Half 2nd cousins, 1 rem & double 4th cousins, 1 rem|479|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+480|Double half 2nd cousins, 1 rem & 3rd cousins, 1 rem|480|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+481|Half 3rd cousins & 3rd cousins, 1 rem & half 3rd cousins, 1 rem|481|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+482|Half 3rd cousins & 3rd cousins, 1 rem & 4th cousins|482|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+483|Half 3rd cousins & double 3rd cousins, 1 rem|483|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+484|Half 3rd cousins & double 4th cousins|484|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+485|Parent-offspring & half 1st cousins, 2 rem & 2nd cousins, 2 rem|485|-1|67/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+486|Parent-offspring & half 2nd cousins & 3rd cousins|486|-1|67/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+487|Parent-offspring & double 1st cousins, 2 rem|487|-1|9/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+488|Parent-offspring & double 2nd cousins|488|-1|9/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+489|Parent-offspring & 2nd cousins, 1 rem & 2nd cousins, 2 rem|489|-1|67/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+490|Parent-offspring & 2nd cousins, 1 rem & 3rd cousins, 1 rem|490|-1|133/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+491|Parent-offspring & 2nd cousins, 2 rem & 3rd cousins|491|-1|33/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+492|Parent-offspring & double 2nd cousins, 2 rem|492|-1|33/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+493|Parent-offspring & double 3rd cousins|493|-1|33/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+494|Grandparent-grandchild & half gr grand avuncular & 1st cousins, 3 rem|494|-1|19/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+495|Grandparent-grandchild & half 1st cousins, 1 rem & 2nd cousins, 1 rem|495|-1|19/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+496|Grandparent-grandchild & double 1st cousins, 1 rem|496|-1|3/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+497|Grandparent-grandchild & 1st cousins, 2 rem & 1st cousins, 3 rem|497|-1|19/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+498|Grandparent-grandchild & 1st cousins, 2 rem & 2nd cousins, 2 rem|498|-1|37/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+499|Grandparent-grandchild & double 1st cousins, 2 rem|499|-1|5/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+500|Grandparent-grandchild & double 1st cousins, 3 rem|500|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+501|Grandparent-grandchild & 2nd cousins, 1 rem & 2nd cousins, 2 rem|501|-1|35/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+502|Grandparent-grandchild & double 2nd cousins, 1 rem|502|-1|9/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+503|Grandparent-grandchild & double 2nd cousins, 2 rem|503|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+504|Gr grandparent-grandchild & gr gr grandparent-grandchild & gr gr grand avuncular|504|-1|7/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+505|Gr grandparent-grandchild & grand avuncular & 1st cousins, 3 rem|505|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+506|Gr grandparent-grandchild & gr grand avuncular & gr gr grand avuncular|506|-1|7/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+507|Gr grandparent-grandchild & gr grand avuncular & 1st cousins, 3 rem|507|-1|13/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+508|Gr grandparent-grandchild & double gr gr grand avuncular|508|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+509|Gr grandparent-grandchild & 1st cousins, 2 rem & 1st cousins, 3 rem|509|-1|11/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+510|Gr grandparent-grandchild & double 1st cousins, 2 rem|510|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+511|Gr grandparent-grandchild & double 1st cousins, 3 rem|511|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+512|Gr gr grandparent-grandchild & double gr gr gr grandparent-grandchild|512|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+513|Gr gr grandparent-grandchild & gr grand avuncular & gr gr grand avuncular|513|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+514|Gr gr grandparent-grandchild & double gr grand avuncular|514|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+515|Gr gr grandparent-grandchild & double gr gr grand avuncular|515|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+516|Double gr gr grandparent-grandchild & gr gr gr grandparent-grandchild|516|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+517|Double gr gr grandparent-grandchild & gr gr grand avuncular|517|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+518|Triple gr gr gr grandparent-grandchild|518|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+519|Siblings & double half 2nd cousins, 1 rem|519|-1|33/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+520|Siblings & double 3rd cousins, 1 rem|520|-1|65/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+521|Avuncular & half 1st cousins, 2 rem & 2nd cousins, 2 rem|521|-1|35/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+522|Avuncular & half 2nd cousins & 3rd cousins|522|-1|35/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+523|Avuncular & double 1st cousins, 2 rem|523|-1|5/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+524|Avuncular & double 2nd cousins|524|-1|5/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+525|Avuncular & 2nd cousins, 1 rem & 2nd cousins, 2 rem|525|-1|35/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+526|Avuncular & 2nd cousins, 1 rem & 3rd cousins, 1 rem|526|-1|69/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+527|Avuncular & 2nd cousins, 2 rem & 3rd cousins|527|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+528|Avuncular & double 2nd cousins, 2 rem|528|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+529|Avuncular & double 3rd cousins|529|-1|17/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+530|Grand avuncular & half gr grand avuncular & 1st cousins, 3 rem|530|-1|11/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+531|Grand avuncular & half 1st cousins, 1 rem & 2nd cousins, 1 rem|531|-1|11/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+532|Grand avuncular & gr grand avuncular & 1st cousins, 3 rem|532|-1|13/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+533|Grand avuncular & 1st cousins, 2 rem & 1st cousins, 3 rem|533|-1|11/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+534|Grand avuncular & 1st cousins, 2 rem & 2nd cousins, 2 rem|534|-1|21/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+535|Grand avuncular & double 1st cousins, 2 rem|535|-1|3/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+536|Grand avuncular & double 1st cousins, 3 rem|536|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+537|Grand avuncular & 2nd cousins, 1 rem & 2nd cousins, 2 rem|537|-1|19/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+538|Grand avuncular & double 2nd cousins, 1 rem|538|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+539|Gr grand avuncular & double gr gr grand avuncular|539|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+540|Gr grand avuncular & 1st cousins, 2 rem & 1st cousins, 3 rem|540|-1|7/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+541|Gr grand avuncular & double 1st cousins, 2 rem|541|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+542|Gr grand avuncular & double 1st cousins, 3 rem|542|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+543|Double gr grand avuncular & gr gr grand avuncular|543|-1|5/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+544|Double gr grand avuncular & 1st cousins, 3 rem|544|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+545|Triple gr gr grand avuncular|545|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+546|1st cousins & half 1st cousins & half 1st cousins, 1 rem|546|-1|7/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+547|1st cousins & half 1st cousins & 2nd cousins|547|-1|7/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+548|1st cousins & half 2nd cousins & 3rd cousins|548|-1|19/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+549|1st cousins & half 2nd cousins, 1 rem & 3rd cousins, 1 rem|549|-1|35/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+550|1st cousins & 1st cousins, 1 rem & 2nd cousins, 1 rem|550|-1|13/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+551|1st cousins & 1st cousins, 1 rem & 3rd cousins|551|-1|25/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+552|1st cousins & 2nd cousins & 3rd cousins|552|-1|21/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+553|1st cousins & 2nd cousins & 3rd cousins, 1 rem|553|-1|41/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+554|1st cousins & 2nd cousins, 1 rem & half 3rd cousins, 1 rem|554|-1|73/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+555|1st cousins & 2nd cousins, 1 rem & 3rd cousins|555|-1|19/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+556|1st cousins & 2nd cousins, 1 rem & 3rd cousins, 1 rem|556|-1|37/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+557|1st cousins & 2nd cousins, 1 rem & 4th cousins|557|-1|73/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+558|1st cousins & 3rd cousins & 3rd cousins, 1 rem|558|-1|35/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+559|1st cousins & 3rd cousins & 4th cousins|559|-1|69/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+560|1st cousins & 3rd cousins, 1 rem & 4th cousins|560|-1|67/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+561|1st cousins & double 3rd cousins, 1 rem|561|-1|17/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+562|1st cousins & double 3rd cousins, 2 rem|562|-1|33/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+563|1st cousins, 1 rem & half 1st cousins, 1 rem & 2nd cousins|563|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+564|1st cousins, 1 rem & half 1st cousins, 2 rem & 2nd cousins, 2 rem|564|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+565|1st cousins, 1 rem & half 1st cousins, 2 rem & 3rd cousins|565|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+566|1st cousins, 1 rem & half 2nd cousins & 3rd cousins|566|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+567|1st cousins, 1 rem & half 2nd cousins & 3rd cousins, 1 rem|567|-1|21/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+568|1st cousins, 1 rem & half 2nd cousins, 1 rem & 3rd cousins, 1 rem|568|-1|19/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+569|1st cousins, 1 rem & half 2nd cousins, 1 rem & 4th cousins|569|-1|37/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+570|1st cousins, 1 rem & 1st cousins, 2 rem & 2nd cousins, 1 rem|570|-1|7/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+571|1st cousins, 1 rem & 1st cousins, 2 rem & 2nd cousins, 2 rem|571|-1|13/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+572|1st cousins, 1 rem & double 1st cousins, 2 rem|572|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+573|1st cousins, 1 rem & 2nd cousins & 2nd cousins, 1 rem|573|-1|7/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+574|1st cousins, 1 rem & 2nd cousins & 2nd cousins, 2 rem|574|-1|13/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+575|1st cousins, 1 rem & 2nd cousins & 3rd cousins|575|-1|13/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+576|1st cousins, 1 rem & 2nd cousins & 3rd cousins, 1 rem|576|-1|25/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+577|1st cousins, 1 rem & double 2nd cousins|577|-1|1/8|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+578|1st cousins, 1 rem & 2nd cousins, 1 rem & half 2nd cousins, 1 rem|578|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+579|1st cousins, 1 rem & 2nd cousins, 1 rem & 3rd cousins|579|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+580|1st cousins, 1 rem & 2nd cousins, 1 rem & 3rd cousins, 1 rem|580|-1|21/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+581|1st cousins, 1 rem & 2nd cousins, 1 rem & 4th cousins|581|-1|41/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+582|1st cousins, 1 rem & double 2nd cousins, 1 rem|582|-1|3/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+583|1st cousins, 1 rem & 2nd cousins, 2 rem & 3rd cousins|583|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+584|1st cousins, 1 rem & 2nd cousins, 2 rem & 3rd cousins, 1 rem|584|-1|19/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+585|1st cousins, 1 rem & double 2nd cousins, 2 rem|585|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+586|1st cousins, 1 rem & 3rd cousins & 3rd cousins, 1 rem|586|-1|19/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+587|1st cousins, 1 rem & 3rd cousins & 4th cousins|587|-1|37/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+588|1st cousins, 1 rem & double 3rd cousins|588|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+589|1st cousins, 1 rem & 3rd cousins, 1 rem & 4th cousins|589|-1|35/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+590|1st cousins, 1 rem & double 4th cousins|590|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+591|Double 1st cousins, 1 rem & half 1st cousins, 2 rem|591|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+592|Double 1st cousins, 1 rem & half 2nd cousins|592|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+593|Double 1st cousins, 1 rem & 2nd cousins, 1 rem|593|-1|9/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+594|Double 1st cousins, 1 rem & 3rd cousins|594|-1|17/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+595|Double 1st cousins, 1 rem & 3rd cousins, 1 rem|595|-1|33/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+596|1st cousins, 2 rem & half 1st cousins, 2 rem & 2nd cousins, 2 rem|596|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+597|1st cousins, 2 rem & half 2nd cousins, 1 rem & half 2nd cousins, 2 rem|597|-1|11/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+598|1st cousins, 2 rem & double half 2nd cousins, 2 rem|598|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+599|1st cousins, 2 rem & 1st cousins, 3 rem & 2nd cousins, 1 rem|599|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+600|1st cousins, 2 rem & double 1st cousins, 3 rem|600|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+601|1st cousins, 2 rem & 2nd cousins & 2nd cousins, 1 rem|601|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+602|1st cousins, 2 rem & 2nd cousins & 3rd cousins, 1 rem|602|-1|17/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+603|1st cousins, 2 rem & 2nd cousins, 1 rem & half 2nd cousins, 2 rem|603|-1|13/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+604|1st cousins, 2 rem & 2nd cousins, 1 rem & 2nd cousins, 2 rem|604|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+605|1st cousins, 2 rem & 2nd cousins, 1 rem & 3rd cousins|605|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+606|1st cousins, 2 rem & 2nd cousins, 1 rem & 3rd cousins, 1 rem|606|-1|13/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+607|1st cousins, 2 rem & double 2nd cousins, 1 rem|607|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+608|1st cousins, 2 rem & 2nd cousins, 2 rem & 2nd cousins, 3 rem|608|-1|11/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+609|1st cousins, 2 rem & double 2nd cousins, 2 rem|609|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+610|1st cousins, 2 rem & double 3rd cousins, 1 rem|610|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+611|Double 1st cousins, 2 rem & 1st cousins, 3 rem|611|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+612|Double 1st cousins, 2 rem & 2nd cousins, 1 rem|612|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+613|Double 1st cousins, 2 rem & 2nd cousins, 2 rem|613|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+614|Double 1st cousins, 3 rem & half 1st cousins, 3 rem|614|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+615|Triple 1st cousins, 3 rem|615|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+616|2nd cousins & half 2nd cousins & 2nd cousins, 1 rem|616|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+617|2nd cousins & half 2nd cousins & 3rd cousins|617|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+618|2nd cousins & half 2nd cousins & 3rd cousins, 1 rem|618|-1|13/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+619|2nd cousins & half 2nd cousins, 1 rem & 3rd cousins|619|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+620|2nd cousins & half 2nd cousins, 1 rem & 3rd cousins, 1 rem|620|-1|11/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+621|2nd cousins & half 2nd cousins, 1 rem & 4th cousins|621|-1|21/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+622|2nd cousins & half 3rd cousins & 3rd cousins, 1 rem|622|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+623|2nd cousins & half 3rd cousins & 4th cousins|623|-1|19/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+624|2nd cousins & 2nd cousins, 1 rem & 2nd cousins, 2 rem|624|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+625|2nd cousins & 2nd cousins, 1 rem & 3rd cousins|625|-1|7/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+626|2nd cousins & 2nd cousins, 1 rem & 3rd cousins, 1 rem|626|-1|13/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+627|2nd cousins & 2nd cousins, 1 rem & 4th cousins|627|-1|25/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+628|2nd cousins & double 2nd cousins, 1 rem|628|-1|1/16|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+629|2nd cousins & 2nd cousins, 2 rem & 3rd cousins, 1 rem|629|-1|11/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+630|2nd cousins & 2nd cousins, 2 rem & 4th cousins, 1 rem|630|-1|41/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+631|2nd cousins & double 2nd cousins, 2 rem|631|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+632|2nd cousins & 3rd cousins & half 3rd cousins|632|-1|11/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+633|2nd cousins & 3rd cousins & 3rd cousins, 1 rem|633|-1|11/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+634|2nd cousins & 3rd cousins & 4th cousins|634|-1|21/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+635|2nd cousins & 3rd cousins & 4th cousins, 1 rem|635|-1|41/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+636|2nd cousins & double 3rd cousins|636|-1|3/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+637|2nd cousins & 3rd cousins, 1 rem & 3rd cousins, 2 rem|637|-1|19/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+638|2nd cousins & 3rd cousins, 1 rem & 4th cousins|638|-1|19/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+639|2nd cousins & double 3rd cousins, 1 rem|639|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+640|2nd cousins & double 4th cousins|640|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+641|Double 2nd cousins & half 2nd cousins|641|-1|5/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+642|Double 2nd cousins & half 2nd cousins, 1 rem|642|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+643|Double 2nd cousins & 3rd cousins|643|-1|9/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+644|Double 2nd cousins & 4th cousins|644|-1|33/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+645|2nd cousins, 1 rem & half 2nd cousins, 1 rem & 3rd cousins|645|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+646|2nd cousins, 1 rem & half 2nd cousins, 1 rem & 3rd cousins, 1 rem|646|-1|7/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+647|2nd cousins, 1 rem & half 2nd cousins, 1 rem & 4th cousins|647|-1|13/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+648|2nd cousins, 1 rem & double half 2nd cousins, 1 rem|648|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+649|2nd cousins, 1 rem & half 3rd cousins & half 3rd cousins, 1 rem|649|-1|11/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+650|2nd cousins, 1 rem & half 3rd cousins & 4th cousins|650|-1|11/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+651|2nd cousins, 1 rem & double half 3rd cousins, 1 rem|651|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+652|2nd cousins, 1 rem & 2nd cousins, 2 rem & 3rd cousins|652|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+653|2nd cousins, 1 rem & 2nd cousins, 2 rem & 3rd cousins, 1 rem|653|-1|7/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+654|2nd cousins, 1 rem & 2nd cousins, 2 rem & 4th cousins|654|-1|13/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+655|2nd cousins, 1 rem & 2nd cousins, 2 rem & 4th cousins, 1 rem|655|-1|25/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+656|2nd cousins, 1 rem & double 2nd cousins, 2 rem|656|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+657|2nd cousins, 1 rem & double 2nd cousins, 3 rem|657|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+658|2nd cousins, 1 rem & 3rd cousins & half 3rd cousins, 1 rem|658|-1|13/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+659|2nd cousins, 1 rem & 3rd cousins & 3rd cousins, 1 rem|659|-1|7/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+660|2nd cousins, 1 rem & 3rd cousins & 3rd cousins, 2 rem|660|-1|13/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+661|2nd cousins, 1 rem & 3rd cousins & 4th cousins|661|-1|13/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+662|2nd cousins, 1 rem & double 3rd cousins|662|-1|1/32|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+663|2nd cousins, 1 rem & 3rd cousins, 1 rem & half 3rd cousins, 1 rem|663|-1|11/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+664|2nd cousins, 1 rem & 3rd cousins, 1 rem & 3rd cousins, 2 rem|664|-1|11/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+665|2nd cousins, 1 rem & 3rd cousins, 1 rem & 4th cousins|665|-1|11/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+666|2nd cousins, 1 rem & 3rd cousins, 1 rem & 4th cousins, 1 rem|666|-1|21/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+667|2nd cousins, 1 rem & double 3rd cousins, 1 rem|667|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+668|2nd cousins, 1 rem & double 4th cousins|668|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+669|Double 2nd cousins, 1 rem & half 2nd cousins, 1 rem|669|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+670|Double 2nd cousins, 1 rem & half 3rd cousins|670|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+671|Double 2nd cousins, 1 rem & 2nd cousins, 2 rem|671|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+672|Double 2nd cousins, 1 rem & 3rd cousins|672|-1|5/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+673|Double 2nd cousins, 1 rem & 3rd cousins, 1 rem|673|-1|9/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+674|2nd cousins, 2 rem & 3rd cousins & 3rd cousins, 1 rem|674|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+675|2nd cousins, 2 rem & 3rd cousins & 4th cousins|675|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+676|2nd cousins, 2 rem & double 3rd cousins|676|-1|3/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+677|2nd cousins, 2 rem & 3rd cousins, 1 rem & 4th cousins, 1 rem|677|-1|13/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+678|2nd cousins, 2 rem & double 3rd cousins, 1 rem|678|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+679|2nd cousins, 2 rem & double 3rd cousins, 2 rem|679|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+680|2nd cousins, 2 rem & double 4th cousins|680|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+681|Double 2nd cousins, 2 rem & half 2nd cousins, 2 rem|681|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+682|Double 2nd cousins, 2 rem & half 3rd cousins, 1 rem|682|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+683|3rd cousins & half 3rd cousins & 3rd cousins, 1 rem|683|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+684|3rd cousins & half 3rd cousins & 4th cousins|684|-1|7/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+685|3rd cousins & 3rd cousins, 1 rem & half 3rd cousins, 1 rem|685|-1|7/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+686|3rd cousins & 3rd cousins, 1 rem & half 4th cousins|686|-1|13/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+687|3rd cousins & 3rd cousins, 1 rem & 3rd cousins, 2 rem|687|-1|7/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+688|3rd cousins & 3rd cousins, 1 rem & 4th cousins|688|-1|7/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+689|3rd cousins & 3rd cousins, 1 rem & 4th cousins, 1 rem|689|-1|13/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+690|3rd cousins & double 3rd cousins, 1 rem|690|-1|1/64|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+691|3rd cousins & double 3rd cousins, 2 rem|691|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+692|3rd cousins & 4th cousins & 4th cousins, 1 rem|692|-1|11/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+693|3rd cousins & double 4th cousins|693|-1|3/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+694|Double 3rd cousins & half 3rd cousins|694|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+695|Double 3rd cousins & 3rd cousins, 1 rem|695|-1|5/256|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+696|Double 3rd cousins & 4th cousins|696|-1|9/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+697|Double 3rd cousins & 4th cousins, 1 rem|697|-1|17/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+698|3rd cousins, 1 rem & double half 3rd cousins, 1 rem|698|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+699|3rd cousins, 1 rem & 3rd cousins, 2 rem & 4th cousins|699|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+700|3rd cousins, 1 rem & 4th cousins & half 4th cousins|700|-1|7/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+701|3rd cousins, 1 rem & double 4th cousins|701|-1|1/128|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+702|Double 3rd cousins, 1 rem & half 3rd cousins, 1 rem|702|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+703|Double 3rd cousins, 1 rem & half 4th cousins|703|-1|9/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+704|Double 3rd cousins, 1 rem & 3rd cousins, 2 rem|704|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+705|Double 3rd cousins, 1 rem & 4th cousins|705|-1|5/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+706|Double 3rd cousins, 1 rem & 4th cousins, 1 rem|706|-1|9/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+707|Double 3rd cousins, 2 rem & 4th cousins, 1 rem|707|-1|5/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+708|Triple 3rd cousins, 2 rem|708|-1|3/512|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+709|Double 4th cousins & half 4th cousins|709|-1|5/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0
+710|Triple 4th cousins, 1 rem|710|-1|3/1024|0|0|0|0|0|0|0|0|0|0|0|0|0|0

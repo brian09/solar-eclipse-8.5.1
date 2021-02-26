@@ -1,0 +1,51 @@
+#!/bin/bash
+
+XMGR_GEOM=704x528
+
+# This custom version of open-x11 has been edited to allow multiple arguments
+# with the launched application.
+
+if [[ -d /Applications/Utilities/X11.app ]]; then
+    X11APPDIR=/Applications/Utilities/X11.app
+else
+    X11APPDIR=""
+fi    
+    
+# First see if this user has started X11. If not, start it.
+# Then bring original terminal back to front
+        
+already_running_x11=$( /bin/ps -xwc | grep -v X11DO | grep X11 \
+                           | head -n 1 | awk '{print $NF}' )
+        
+if [[ -z $already_running_x11  ]]; then
+    /usr/bin/open -a X11
+    sleep 12
+
+    if [[ $TERM_PROGRAM == Apple_Terminal ]]; then
+	/usr/bin/open -a Terminal
+    fi
+fi
+
+# Add X programs to PATH
+
+for d in /usr/X11R6/bin /usr/bin/X11 /usr/local/bin/X11; do
+  if [ -d $d ]; then
+    case $PATH in
+      '')
+	PATH=$d
+	;;
+      $d|$d:*|*:$d|*:$d:*)
+	: do nothing
+	;;
+      *)
+	PATH=$PATH:$d
+	;;
+    esac
+  fi
+done
+
+# Main 
+
+ "$@" -g $XMGR_GEOM &
+
+# end

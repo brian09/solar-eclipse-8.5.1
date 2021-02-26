@@ -1,0 +1,143 @@
+# Filename: power.gr
+#
+# This is the options file for plot -power
+#
+# You can customize by copying those parameters that you want to change
+# into a power.gr file in your working directory or ~/lib.
+#
+# NOTES:
+# IT IS RECOMMENDED THAT YOU COPY ONLY THOSE PARAMETERS YOU WANT TO CHANGE,
+#   SO THAT YOU WILL OBTAIN THE BENEFIT OF FUTURE UPDATES.
+#
+# You DO have control over all linewidths, fonts, colors and most other 
+#   settings.
+#
+# You do NOT have control over the marker label character size, and the
+#   major and minor ticks along the X and Y axes.  These are computed
+#   by the plotmulti program and cannot be changed easily.
+#
+# You also do NOT have control over the overall layout, which would be
+#   difficult to parameterize.  HOWEVER, you can move some things around
+#   using the XMGR GUI.
+#
+# Fonts Available:
+# 0:Times-Roman 1:Times-Bold 2:Times-Italic 3:Times-BoldItalic
+# 4:Helvetica 5:Helvetica-Bold 6:Helvetica-Oblique 7:Helvetica-BoldOblique
+
+# Colors Available:
+# 0:White 1:Black 2:Red 3:Green 4:Blue 5:Yellow 6:Brown 7:Gray 8:Violet 9:Cyan
+# 10:Magenta 11:Orange 12:Indigo 13:Maroon 14:Turquoise 15:Green4
+#
+# -
+
+# Title and Subtitle setup
+#
+@title font 0
+@title color 1
+@title size 1.500000
+@title linewidth 1
+#
+@subtitle font 2
+@subtitle color 1
+@subtitle linewidth 1
+#
+# X axis
+#
+@xaxis label "Heritability"
+@xaxis label char size 1.2500000
+@xaxis label linewidth 1
+@xaxis label font 0
+@xaxis ticklabel font 0
+@xaxis tick major linewidth 3
+@xaxis tick minor linewidth 3
+@frame linewidth 3
+#
+# Y axis
+#
+@yaxis label "Power"
+@yaxis label char size 1.2500000
+@yaxis label linewidth 1
+@yaxis label font 0
+@yaxis ticklabel font 0
+@yaxis tick major linewidth 3
+@yaxis tick minor linewidth 3
+#
+# Marker label settings
+#
+@string font 4
+@string linewidth 1
+@string color 1
+@string just 0
+#
+# Marker tick and line settings
+#
+@line linewidth 2
+@line color 1
+#
+# Set (i.e. the plotted curve) settings
+#
+#   Symbols available:  (NOTE: THE DOCUMENTATION WAS OFF BY 1)
+#   1:None  2:Circle  3:Square  4:Diamond  5:Triangle up  6:Triangle left
+#   7:Triangle down  8:Triangle right  9:Plus  10:X  11:Star
+#
+@s0 linewidth 3
+@s0 color 1
+@s1 linewidth 3
+@s1 color 1
+@s2 linewidth 3
+@s2 color 1
+@s3 linewidth 3
+@s3 color 1
+@s4 linewidth 3
+@s4 color 1
+@s5 linewidth 3
+@s5 color 1
+@s6 linewidth 3
+@s6 color 1
+@s7 linewidth 3
+@s7 color 1
+@s8 linewidth 3
+@s8 color 1
+@s9 linewidth 3
+@s9 color 1
+@s10 linewidth 3
+@s10 color 1
+@s11 linewidth 3
+@s11 color 1
+@s12 linewidth 3
+@s12 color 1
+@s13 linewidth 3
+@s13 color 1
+@s14 linewidth 3
+@s14 color 1
+@s15 linewidth 3
+@s15 color 1
+@s16 linewidth 3
+@s16 color 1
+@s17 linewidth 3
+@s17 color 1
+@s18 linewidth 3
+@s18 color 1
+@s19 linewidth 3
+@s19 color 1
+@s20 linewidth 3
+@s20 color 1
+@s21 linewidth 3
+@s21 color 1
+@s22 linewidth 3
+@s22 color 1
+@s23 linewidth 3
+@s23 color 1
+@s24 linewidth 3
+@s24 color 1
+@s25 linewidth 3
+@s25 color 1
+@s26 linewidth 3
+@s26 color 1
+@s27 linewidth 3
+@s27 color 1
+@s28 linewidth 3
+@s28 color 1
+@s29 linewidth 3
+@s29 color 1
+
