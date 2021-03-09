@@ -29,34 +29,56 @@ static inline int create_index(const int i, const int j, const int N)
 }
 
 
-static void write_pedigree_to_file(string output_filename, float * empirical_pedigree, pio_file_t * plink_file, const int n_subjects, const int subset_size,const int * subset_index_map){
+static void write_pedigree_to_file(string output_filename, float * empirical_pedigree, pio_file_t * plink_file, \
+                                    const int n_subjects, const int subset_size,const int * subset_index_map, const bool flatten_indices){
     ofstream output_stream(output_filename.c_str());
     
     pio_sample_t * sample_i;
     pio_sample_t * sample_j;
     output_stream << "IDA,IDB,KIN\n"; 
     if(subset_index_map == 0 ){
+        int array_index = 0;
     	for(size_t j = 0; j < n_subjects ;j++){
         	sample_j = fam_get_sample(&plink_file->fam_file, j);
-        	output_stream << sample_j->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[create_index(j,j, n_subjects)] << endl;
+        	if (flatten_indices) 
+        	    output_stream << sample_j->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[array_index++] << endl;
+        	else
+        	    output_stream << sample_j->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[j*n_subjects + j] << endl;
         	for(size_t i = j + 1; i < n_subjects ;i++){
             		sample_i = fam_get_sample(&plink_file->fam_file, i);
-			const int index = create_index(i,j, n_subjects);
-            		output_stream << sample_j->iid << "," << sample_i->iid <<  "," <<  empirical_pedigree[index] << endl;
-            		output_stream << sample_i->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[index] << endl;
+			        //const int index = create_index(i,j, n_subjects);
+			        if(flatten_indices){
+            		    output_stream << sample_j->iid << "," << sample_i->iid <<  "," <<  empirical_pedigree[array_index] << endl;
+            		    output_stream << sample_i->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[array_index] << endl;
+            		    array_index++;
+            		}else{
+            		    output_stream << sample_j->iid << "," << sample_i->iid <<  "," <<  empirical_pedigree[j*n_subjects + i] << endl;
+            		    output_stream << sample_i->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[j*n_subjects + i] << endl; 
+            		}           		    
         	}
     	}
     }else{
-	for(size_t j = 0 ; j < subset_size; j++){
-		sample_j = fam_get_sample(&plink_file->fam_file, subset_index_map[j]);
-		output_stream << sample_j->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[create_index(j,j, subset_size)] << endl;
+        int array_index = 0;
+	    for(size_t j = 0 ; j < subset_size; j++){
+		    sample_j = fam_get_sample(&plink_file->fam_file, subset_index_map[j]);
+		    if(flatten_indices)
+		        output_stream << sample_j->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[array_index++] << endl;
+		    else
+		       output_stream << sample_j->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[j*subset_size + j] << endl; 
         	for(size_t i = j + 1; i < subset_size ;i++){
             		sample_i = fam_get_sample(&plink_file->fam_file, subset_index_map[i]);
-			const int index = create_index(i,j, subset_size);
-            		output_stream << sample_j->iid << "," << sample_i->iid <<  "," <<  empirical_pedigree[index] << endl;
-            		output_stream << sample_i->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[index] << endl;
+			      //  const int index = create_index(i,j, subset_size);
+			        if (flatten_indices){
+            		    output_stream << sample_j->iid << "," << sample_i->iid <<  "," <<  empirical_pedigree[array_index] << endl;
+            		    output_stream << sample_i->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[array_index] << endl;
+            		    array_index++;
+            		}else{
+            		    output_stream << sample_j->iid << "," << sample_i->iid <<  "," <<  empirical_pedigree[j*subset_size + i] << endl;
+            		    output_stream << sample_i->iid << "," << sample_j->iid <<  "," <<  empirical_pedigree[j*subset_size + i] << endl;            		    
+            		}
+
         	}
-	}
+	    }
     }		
     
     output_stream.close();
@@ -71,7 +93,7 @@ static string create_empirical_pedigree_correlation(vector<int> gpu_id_list,  in
 	} 
 	
 	float * cpu_empirical_pedigree;
-	unsigned * cpu_missing_snp_count;
+//	unsigned * cpu_missing_snp_count;
 	const int n_subjects = pio_num_samples(plink_file);
 //	cout << "n_subjects : " << n_subjects << " subset size: " << subset_size << endl; 
 	unsigned array_size;
@@ -83,73 +105,22 @@ static string create_empirical_pedigree_correlation(vector<int> gpu_id_list,  in
 		row_size = n_subjects;
 		array_size = n_subjects*(1+n_subjects)/2;
 	}
-	try{		
+	if(gpu_id_list.size() != 1){ 
+	    try{		
 
-		cpu_empirical_pedigree = new float[array_size];
-	}catch(std::bad_alloc& e){
+		    cpu_empirical_pedigree = new float[array_size];
+	    }catch(std::bad_alloc& e){
 		
-		return string("Failed to allocate host memory for empirical pedigree");
-	}
-	try{ 
-		cpu_missing_snp_count = new unsigned[array_size];
-	}catch(std::bad_alloc& e){
-		delete [] cpu_empirical_pedigree;
+		    return string("Failed to allocate host memory for empirical pedigree");
+	    }
+	    /*try{ 
+		    cpu_missing_snp_count = new unsigned[array_size];
+	    }catch(std::bad_alloc& e){
+		    delete [] cpu_empirical_pedigree;
 		
-		return string("Failed to allocate host memory for missing snp count matrix");
-	}
-/*		
-	int2 * cpu_index_map;
-	try{
-		cpu_index_map = new int2[array_size];
-	}catch(std::bad_alloc& e){
-		delete [] cpu_empirical_pedigree;
-		delete [] cpu_missing_snp_count; 
-		return string("Failed to allocate a dynamic array");
-	}
-*/	
-	int index = 0;
-/*	for(int col = 0; col < row_size; col++){
-		for(int row = col ; row < row_size; row++){
-			cpu_index_map[index++] = make_int2(row, col);
-		}
-	}
-	int2 ** gpu_index_map = new int2*[gpu_id_list.size()];
-	for(int gpu_index = 0 ; gpu_index < gpu_id_list.size() ; gpu_index++){
-		try{
-			cudaErrorCheck(cudaSetDevice(gpu_id_list[gpu_index]));
-			cudaErrorCheck(cudaMalloc((void**)&gpu_index_map[gpu_index],sizeof(int2)*array_size));
-		}catch(GPU_Exception & e){
-			delete [] cpu_empirical_pedigree;
-			delete [] cpu_missing_snp_count;
-			delete [] cpu_index_map;
-			return string("GPU failed to allocate global memory");
-		}
-		try{
-			cudaErrorCheck(cudaMemcpy(gpu_index_map[gpu_index],cpu_index_map, sizeof(int2)*array_size, cudaMemcpyHostToDevice));
-		}catch(GPU_Exception & e){
-			delete [] cpu_empirical_pedigree;
-			delete [] cpu_missing_snp_count;	
-			delete [] cpu_index_map;
-			return string("GPU failed to copy data from host to device");
-		}
-	}
-
-	delete [] cpu_index_map;*/
-	//int ** gpu_subset_index_map = 0;
-/*	if(subset_size){
-		gpu_subset_index_map = new int*[gpu_id_list.size()];
-		for(int gpu_index = 0 ; gpu_index < gpu_id_list.size() ; gpu_index++){
-			try{
-				cudaErrorCheck(cudaSetDevice(gpu_id_list[gpu_index]));
-				cudaErrorCheck(cudaMalloc((void**)&gpu_subset_index_map[gpu_index], sizeof(int)*subset_size));
-				cudaErrorCheck(cudaMemcpy(gpu_subset_index_map[gpu_index], subset_index_map, sizeof(int)*subset_size, cudaMemcpyHostToDevice));
-			}catch(GPU_Exception & e){
-				delete [] cpu_empirical_pedigree;
-				delete [] cpu_missing_snp_count;			
-				return string("Failed to allocate GPU memory for subset index map or to copy CPU subset map to GPU subset map");
-			}
-		}
-	}*/
+		    return string("Failed to allocate host memory for missing snp count matrix");
+	    }*/	
+    }
 
 	int pitch =ceil(n_subjects/32.f)*32;
 	int subset_pitch = 0;
@@ -167,13 +138,13 @@ static string create_empirical_pedigree_correlation(vector<int> gpu_id_list,  in
 		snp_stride = gpu_context->snp_stride;
 		batch_size = gpu_context->max_batch_size;
 	}catch(GPU_Exception & e){
-		delete [] cpu_empirical_pedigree;
-		delete [] cpu_missing_snp_count;
+		if (gpu_id_list.size() != 1) delete [] cpu_empirical_pedigree;
+	//	delete [] cpu_missing_snp_count;
 	
 		return string("Failed to allocate GPU memory for empirical pedigree or missing snp count matrix");
 	}catch(std::bad_alloc& e){
-		delete [] cpu_empirical_pedigree;
-		delete [] cpu_missing_snp_count;
+		if (gpu_id_list.size() != 1) delete [] cpu_empirical_pedigree;
+	//	delete [] cpu_missing_snp_count;
 		
 		return string("Failed to allocate host buffer for reading the plink files");
 	}
@@ -184,23 +155,26 @@ static string create_empirical_pedigree_correlation(vector<int> gpu_id_list,  in
 	
 		try{
 			if(subset_size == 0){
-				pedigree_data[gpu_index] = new GPU_Pedigree_Data(gpu_id_list[gpu_index],  alpha, batch_size, n_subjects, pitch, array_size,\
-						0, 0);
+				pedigree_data[gpu_index] = new GPU_Pedigree_Data(gpu_id_list[gpu_index],  alpha, thread_size,\
+				                                                 batch_size,plink_file->bed_file.header.num_loci,\
+				                                                 n_subjects, pitch, array_size, 0, 0);
 			}else{
-				pedigree_data[gpu_index] = new GPU_Pedigree_Data(gpu_id_list[gpu_index],  alpha, batch_size, n_subjects, pitch, array_size,\
-						 subset_index_map, subset_size);	
+				pedigree_data[gpu_index] = new GPU_Pedigree_Data(gpu_id_list[gpu_index],  alpha, thread_size,\
+				                                                 batch_size, plink_file->bed_file.header.num_loci,\
+				                                                 n_subjects, pitch, array_size,subset_index_map,\
+				                                                 subset_size);	
 			}			
 		}catch(GPU_Exception & e){
 			cout << e.what() << endl;
-			delete [] cpu_empirical_pedigree;
-			delete [] cpu_missing_snp_count;
+			if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+		//	if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
 			
 			delete gpu_context;
 			string error_message = "Failed to allocate GPU memory for either storing SNP values, allele frequencies, the empirical pedigree, or matrix of missing SNP counts.";
 			return error_message;
 		}catch(std::bad_alloc& e){
-			delete [] cpu_empirical_pedigree;
-			delete [] cpu_missing_snp_count;
+			if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+		//	if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
 		
 			delete gpu_context;
 			string error_message = "Failed to allocate memory for host array that stores " + to_string(batch_size) + " sets of SNP data.";
@@ -220,11 +194,11 @@ static string create_empirical_pedigree_correlation(vector<int> gpu_id_list,  in
 			for(int gpu_index = 0; gpu_index < gpu_id_list.size(); gpu_index++){
 				try{
 					cudaErrorCheck(cudaSetDevice(pedigree_data[gpu_index]->gpu_id));
-					cudaErrorCheck(cudaMemset(pedigree_data[gpu_index]->gpu_empirical_pedigree, 0, sizeof(float)*array_size));
-					cudaErrorCheck(cudaMemset(pedigree_data[gpu_index]->gpu_missing_snp_count, 0, sizeof(unsigned)*array_size));
+					cudaErrorCheck(cudaMemset(pedigree_data[gpu_index]->gpu_empirical_pedigree, 0, sizeof(float)*row_size*row_size));
+			//		cudaErrorCheck(cudaMemset(pedigree_data[gpu_index]->gpu_missing_snp_count, 0, sizeof(unsigned)*array_size));
 				}catch(GPU_Exception & e){
-					delete [] cpu_empirical_pedigree;
-					delete [] cpu_missing_snp_count;
+					if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+			//		if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
 					errmsg = "Failure to initialize GPU pedigree arrays to zero on GPU ID " + to_string(pedigree_data[gpu_index]->gpu_id);
 					return errmsg;
 				}
@@ -234,132 +208,187 @@ static string create_empirical_pedigree_correlation(vector<int> gpu_id_list,  in
 			end = snp;
 			unsigned snp_batch_size = end - start;
 			cout << "Chromosome " << chromosome << " contains " << snp_batch_size << " loci\n";
+			for(int gpu_index = 0; gpu_index < gpu_id_list.size(); gpu_index++) pedigree_data[gpu_index]->total_snps = snp_batch_size;
 			errmsg = gpu_context->run_pedigree_creation(pedigree_data, gpu_id_list.size(), snp_batch_size);
-			if(errmsg.length() != 0){
-				delete [] cpu_empirical_pedigree;
-				delete [] cpu_missing_snp_count;
+			if(errmsg.length() != 0){   
+				if(gpu_id_list.size() != 1) delete [] cpu_empirical_pedigree;
+		//		if(gpu_id_list.size() != 1) delete [] cpu_missing_snp_count;
 
 				return errmsg;
 			}
 			if(gpu_id_list.size() != 1){
 				memset(cpu_empirical_pedigree, 0, sizeof(float)*array_size);
-				memset(cpu_missing_snp_count, 0, sizeof(unsigned)*array_size);
-				errmsg = gpu_context->combine_gpu_results(pedigree_data, cpu_empirical_pedigree,cpu_missing_snp_count, gpu_id_list.size());
+			//	memset(cpu_missing_snp_count, 0, sizeof(unsigned)*array_size);
+				errmsg = gpu_context->combine_gpu_results(pedigree_data, cpu_empirical_pedigree, gpu_id_list.size());
 				if(errmsg.length() != 0){
 					delete [] cpu_empirical_pedigree;
-					delete [] cpu_missing_snp_count;
+				//	delete [] cpu_missing_snp_count;
 					return errmsg;
 				}
+				int array_index = 0;
+			    for(int col = 0 ; col < row_size; col++){
+				    for(int row = col; row < row_size; row++){
+					    cpu_empirical_pedigree[array_index] /= (snp_batch_size);// - cpu_missing_snp_count[array_index]);
+					    array_index++;
+				    }
+			    }
 			}else{
 				try{
 				 	gpu_context->copy_results_to_cpu(pedigree_data[0]);
 				 }catch(GPU_Exception & e){
 				 	errmsg = "Failed to copy GPU results to CPU";
-				 	delete [] cpu_empirical_pedigree;
-				 	delete [] cpu_missing_snp_count;
+				 	if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+				 //	if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
 				 	return errmsg;
 				 }
-				 memcpy(cpu_empirical_pedigree, gpu_context->temp_cpu_empirical_pedigree, sizeof(float)*array_size);
-				 memcpy(cpu_missing_snp_count, gpu_context->temp_cpu_missing_snp_count, sizeof(unsigned)*array_size);
+				 int array_index = 0;
+				 for(int col = 0; col < row_size; col++){
+				    for(int row = col; row < row_size; row++){  
+				        gpu_context->temp_cpu_empirical_pedigree[col*row_size + row] /= (snp_batch_size);// - gpu_context->temp_cpu_missing_snp_count[array_index]);
+				        array_index++;
+				    }
+				 }  
+				  
+				// memcpy(cpu_empirical_pedigree, gpu_context->temp_cpu_empirical_pedigree, sizeof(float)*array_size);
+				// memcpy(cpu_missing_snp_count, gpu_context->temp_cpu_missing_snp_count, sizeof(unsigned)*array_size);
 			}
 							
-			for(int col = 0 ; col < row_size; col++){
-				for(int row = col; row < row_size; row++){
-					cpu_empirical_pedigree[create_index(row,col, row_size)] /= (snp_batch_size - cpu_missing_snp_count[create_index(row,col,row_size)]);
-				}
-			}
+
 			if(normalize){
+			    
 				float norms[row_size];
-				for(int index =0 ; index < row_size; index++){
-					norms[index] = sqrt(cpu_empirical_pedigree[create_index(index,index,row_size)]);
-				}
-				for(int col = 0; col < row_size; col++){
-					for(int row = col; row < row_size; row++){
-						cpu_empirical_pedigree[create_index(row,col,row_size)]/(norms[row]*norms[col]);
-					}
-				}
+				if(gpu_id_list.size() != 1){
+				    int array_index = 0;
+				    for(int index =0 ; index < row_size; index++){
+					    norms[index] = sqrt(cpu_empirical_pedigree[array_index]);
+					    array_index += row_size - index;
+					    
+				    }
+				    array_index = 0;
+				    for(int col = 0; col < row_size; col++){
+					    for(int row = col; row < row_size; row++){
+						    cpu_empirical_pedigree[array_index]/(norms[row]*norms[col]);
+						    array_index++;
+					    }
+				    }
+				}else{
+				    for(int index =0 ; index < row_size; index++){
+					    norms[index] = sqrt(gpu_context->temp_cpu_empirical_pedigree[index*row_size + index]);
+				    }
+				    for(int col = 0; col < row_size; col++){
+					    for(int row = col; row < row_size; row++){
+						    gpu_context->temp_cpu_empirical_pedigree[col*row_size + row]/(norms[row]*norms[col]);
+					    }
+				    }
+				}				    
 			}
 			char name_buffer[200];
             		sprintf(name_buffer, "%s.chr%u.csv", output_filename, (unsigned int )chromosome);
 			string filename = string(name_buffer);
-			write_pedigree_to_file(filename, cpu_empirical_pedigree, plink_file,n_subjects, subset_size, subset_index_map);
+		
+			if(gpu_id_list.size() == 1){
+			    
+			    write_pedigree_to_file(filename, gpu_context->temp_cpu_empirical_pedigree, plink_file,n_subjects, subset_size, subset_index_map, false);
+			}else{
+			    write_pedigree_to_file(filename, cpu_empirical_pedigree, plink_file,n_subjects, subset_size, subset_index_map, true);
+			}
 		        if(end != plink_file->bed_file.header.num_loci){
                 		chromosome = locus->chromosome;
             		}
             		start = end;
             		cout << "GRM creation completed for chromosome " << chromosome << "\n";
-            	}
-            }else{
+        }
+    }else{
             	
-            	errmsg = gpu_context->run_pedigree_creation(pedigree_data, gpu_id_list.size(),  plink_file->bed_file.header.num_loci);
+         errmsg = gpu_context->run_pedigree_creation(pedigree_data, gpu_id_list.size(),  plink_file->bed_file.header.num_loci);
 		if(errmsg.length() != 0){
-			delete [] cpu_empirical_pedigree;
-			delete [] cpu_missing_snp_count;
+			if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+	//		if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
 
 			return errmsg;
 		}
 		if(gpu_id_list.size() != 1){
 			memset(cpu_empirical_pedigree, 0, sizeof(float)*array_size);
-			memset(cpu_missing_snp_count, 0, sizeof(unsigned)*array_size);
-			errmsg = gpu_context->combine_gpu_results(pedigree_data, cpu_empirical_pedigree,cpu_missing_snp_count, gpu_id_list.size());
+		//	memset(cpu_missing_snp_count, 0, sizeof(unsigned)*array_size);
+			errmsg = gpu_context->combine_gpu_results(pedigree_data, cpu_empirical_pedigree, gpu_id_list.size());
 			if(errmsg.length() != 0){
 				delete [] cpu_empirical_pedigree;
-				delete [] cpu_missing_snp_count;
+			//	delete [] cpu_missing_snp_count;
 				return errmsg;
 			}
+		    int array_index = 0;
+			for(int col = 0 ; col < row_size; col++){
+		        for(int row = col; row < row_size; row++){
+			        cpu_empirical_pedigree[array_index] /= (plink_file->bed_file.header.num_loci);// - cpu_missing_snp_count[array_index]);
+			        array_index++;
+				}
+			}			
 		}else{
 			try{
 				 gpu_context->copy_results_to_cpu(pedigree_data[0]);
 			}catch(GPU_Exception & e){
 				 errmsg = "Failed to copy GPU results to CPU";
-				 delete [] cpu_empirical_pedigree;
-				 delete [] cpu_missing_snp_count;
+				 if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+			//	 if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
 				 return errmsg;
 			}
-			memcpy(cpu_empirical_pedigree, gpu_context->temp_cpu_empirical_pedigree, sizeof(float)*array_size);
-			memcpy(cpu_missing_snp_count, gpu_context->temp_cpu_missing_snp_count, sizeof(unsigned)*array_size);
+            int array_index =0;
+		    for(int col = 0 ; col < row_size; col++){
+			    for(int row = col; row < row_size; row++){
+				    gpu_context->temp_cpu_empirical_pedigree[col*row_size + row] /= (plink_file->bed_file.header.num_loci);// - gpu_context->temp_cpu_missing_snp_count[array_index]);
+				    array_index++;
+			    }
+		    }			
+		//	memcpy(cpu_empirical_pedigree, gpu_context->temp_cpu_empirical_pedigree, sizeof(float)*array_size);
+		//	memcpy(cpu_missing_snp_count, gpu_context->temp_cpu_missing_snp_count, sizeof(unsigned)*array_size);
 		}       		
             //	cout << cpu_empirical_pedigree[0] << " " << cpu_missing_snp_count[0] << endl;
-		for(int col = 0 ; col < row_size; col++){
-			for(int row = col; row < row_size; row++){
-				cpu_empirical_pedigree[create_index(row,col, row_size)] /= (plink_file->bed_file.header.num_loci - cpu_missing_snp_count[create_index(row,col,row_size)]);
-				
-			}
-		}
+
+		
 		if(normalize){
 			float norms[row_size];
-			for(int index =0 ; index < row_size; index++){
-				norms[index] = sqrt(abs(cpu_empirical_pedigree[create_index(index,index,row_size)]));
-			}
-			for(int col = 0; col < row_size; col++){
-				for(int row = col; row < row_size; row++){
-					cpu_empirical_pedigree[create_index(row,col,row_size)] /= norms[row]*norms[col];
-				}
+			if (gpu_id_list.size() != 1){
+			    int array_index = 0;
+			    for(int index =0 ; index < row_size; index++){
+				    norms[index] = sqrt(abs(cpu_empirical_pedigree[array_index]));
+				    array_index += row_size - index;
+			    }
+			    array_index = 0;
+			    for(int col = 0; col < row_size; col++){
+				    for(int row = col; row < row_size; row++){
+					    cpu_empirical_pedigree[array_index] /= norms[row]*norms[col];
+					    array_index++;
+				    }
+			    }
+			}else{
+		
+			    for(int index =0 ; index < row_size; index++){
+				    norms[index] = sqrt(abs(gpu_context->temp_cpu_empirical_pedigree[index*row_size + index]));
+				  
+			    }
+			    for(int col = 0; col < row_size; col++){
+				    for(int row = col; row < row_size; row++){
+					    gpu_context->temp_cpu_empirical_pedigree[col*row_size + row] /= norms[row]*norms[col];
+				    }
+			    }			
 			}
 		}
-		write_pedigree_to_file(string(output_filename),cpu_empirical_pedigree, plink_file, n_subjects, subset_size, subset_index_map);
+	    if(gpu_id_list.size() == 1){
+			    
+	        write_pedigree_to_file(string(output_filename), gpu_context->temp_cpu_empirical_pedigree, plink_file,n_subjects, subset_size, subset_index_map, false);
+		}else{
+			write_pedigree_to_file(string(output_filename), cpu_empirical_pedigree, plink_file,n_subjects, subset_size, subset_index_map, true);
+		}		
+
 		cout << "GRM creation completed\n";
 	}
 
 
-	delete [] cpu_empirical_pedigree;
-	delete [] cpu_missing_snp_count;
-/*	for(int gpu_index = 0 ; gpu_index < gpu_id_list.size() ; gpu_index++){
-		try{
-			cudaErrorCheck(cudaSetDevice(gpu_id_list[gpu_index]));
-			cudaErrorCheck(cudaFree(gpu_index_map[gpu_index]));
-			//if(subset_size != 0){
-			//	cudaErrorCheck(cudaFree(gpu_subset_index_map[gpu_index]));
-			//}
-			delete pedigree_data[gpu_index];
-		}catch(GPU_Exception & e){
-			
-			return string("GPU failed to free global memory");
-		}
-	}*/
+	if(gpu_id_list.size() != 1)  delete [] cpu_empirical_pedigree;
+//	if(gpu_id_list.size() != 1)  delete [] cpu_missing_snp_count;
+
 	delete [] pedigree_data;
-	delete gpu_context;
-	//delete [] gpu_index_map;	
+	delete gpu_context;	
 	//if(subset_size != 0) delete [] gpu_subset_index_map;
 	string empty_string;
 	return empty_string;				            		

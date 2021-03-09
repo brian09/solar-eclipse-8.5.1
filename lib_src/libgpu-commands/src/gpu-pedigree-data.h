@@ -5,19 +5,22 @@
 #include "plinkio.h"
 #include <fstream>
 #include <string>
+#include "cublas_v2.h"
 class GPU_Pedigree_Data{
 private:
 	void allocate_gpu_data();
 	void free_gpu_data();
 public:
-	GPU_Pedigree_Data(const int _gpu_id,   const float _alpha, const int _max_batch_size,\
-				 const int _n_subjects,  const int _pitch, const int _array_size, \
+	GPU_Pedigree_Data(const int _gpu_id,  const float _alpha, const int _blockSize, const int _max_batch_size,\
+				 const int _total_snps, const int _n_subjects, const int _pitch, const int _array_size, \
 				 const int * const _subset_index_map, const int _subset_size);
 	~GPU_Pedigree_Data();
 	const int gpu_id;
 	const int max_batch_size;
 	const int n_subjects;
 	const int pitch;
+	const int blockSize;
+	int total_snps;
 	//const int subset_pitch;
 	const int array_size;
 	const int subset_size;
@@ -26,12 +29,14 @@ public:
 	float * gpu_frequencies;
 	float * cpu_frequencies;
 	float * gpu_empirical_pedigree;
-	unsigned * gpu_missing_snp_count;
+//	bool * missing_snps;
+//	unsigned * gpu_missing_snp_count;
 	const float alpha;
-	snp_t * cpu_snp_data;
-	snp_t * gpu_snp_data;
+	float * cpu_snp_data;
+	float * gpu_snp_data;
 //	int * gpu_snp_data_subset;
 	cudaStream_t stream;
+	cublasHandle_t handle;
 	void copy_snp_data_to_gpu();
 	void enable_peer_access(const int peer_gpu_id);
 	void disable_peer_access(const int peer_gpu_id);
@@ -64,7 +69,7 @@ public:
 	const int pitch;
 	int snp_stride;
 	float * temp_cpu_empirical_pedigree;
-	unsigned * temp_cpu_missing_snp_count;
+//	unsigned * temp_cpu_missing_snp_count;
 	std::ifstream freq_stream;
 	
 	
@@ -73,7 +78,7 @@ public:
 					 const int _pitch, const int _subset_size);
 	~GPU_Pedigree_Context();
 	std::string run_pedigree_creation(GPU_Pedigree_Data ** gpu_pedigree_data, const int _n_gpus, const int _n_snps);
-	std::string combine_gpu_results(GPU_Pedigree_Data ** gpu_pedigree_data, float * const cpu_empirical_pedigree, unsigned * const cpu_missing_snp_count, const int n_gpus);
+	std::string combine_gpu_results(GPU_Pedigree_Data ** gpu_pedigree_data, float * const cpu_empirical_pedigree, const int n_gpus);
 	void copy_results_to_cpu(GPU_Pedigree_Data * gpu_pedigree_data);
 
 

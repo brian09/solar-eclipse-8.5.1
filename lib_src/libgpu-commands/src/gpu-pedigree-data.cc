@@ -6,19 +6,24 @@
 #include <iomanip> 
 void GPU_Pedigree_Data::allocate_gpu_data(){
 	int device;
+	const int n_rows = (subset_size == 0) ? n_subjects : subset_size; 
 	cudaErrorCheck(cudaGetDevice (&device));
 	if(device != gpu_id) cudaErrorCheck(cudaSetDevice(gpu_id));
-	cudaErrorCheck(cudaMalloc((void**)&gpu_snp_data, sizeof(int)*max_batch_size*pitch));
+	cudaErrorCheck(cudaMalloc((void**)&gpu_snp_data, sizeof(float)*max_batch_size*pitch));
 	/*if(subset_pitch != 0){
 		cudaErrorCheck(cudaMalloc((void**)&gpu_snp_data_subset, sizeof(int)*max_batch_size*subset_pitch));
 		cudaErrorCheck(cudaMemset(gpu_snp_data_subset, 0, sizeof(int)*max_batch_size*subset_pitch));
 	}*/
 	cudaErrorCheck(cudaMalloc((void**)&gpu_frequencies, sizeof(float)*max_batch_size));
-	cudaErrorCheck(cudaMalloc((void**)&gpu_empirical_pedigree, sizeof(float)*array_size));
-	cudaErrorCheck(cudaMalloc((void**)&gpu_missing_snp_count, sizeof(unsigned)*array_size));
-	cudaErrorCheck(cudaMemset(gpu_empirical_pedigree, 0, sizeof(float)*array_size));
-	cudaErrorCheck(cudaMemset(gpu_missing_snp_count, 0, sizeof(unsigned)*array_size));
+	cudaErrorCheck(cudaMalloc((void**)&gpu_empirical_pedigree, sizeof(float)*n_rows*n_rows));
+//	cudaErrorCheck(cudaMalloc((void**)&missing_snps, sizeof(bool)*pitch*max_batch_size));
+//	cudaErrorCheck(cudaMalloc((void**)&gpu_missing_snp_count, sizeof(unsigned)*array_size));
+	
+	cudaErrorCheck(cudaMemset(gpu_empirical_pedigree, 0, sizeof(float)*n_rows*n_rows));
+//	cudaErrorCheck(cudaMemset(gpu_missing_snp_count, 0, sizeof(unsigned)*array_size));
 	cudaErrorCheck(cudaStreamCreate(&stream));
+	cublasErrorCheck(cublasCreate(&handle));
+	cublasErrorCheck(cublasSetStream(handle, stream));
 }
 void GPU_Pedigree_Data::free_gpu_data(){
 	int device;
@@ -30,11 +35,13 @@ void GPU_Pedigree_Data::free_gpu_data(){
 		cudaErrorCheck(cudaFree(gpu_snp_data_subset));
 	}*/
 	cudaErrorCheck(cudaFree(gpu_empirical_pedigree));
-	cudaErrorCheck(cudaFree(gpu_missing_snp_count));	
+//	cudaErrorCheck(cudaFree(gpu_missing_snp_count));	
+//	cudaErrorCheck(cudaFree(missing_snps));
+	cublasErrorCheck(cublasDestroy(handle));
 	cudaErrorCheck(cudaStreamDestroy(stream));
 }
 void GPU_Pedigree_Data::copy_snp_data_to_gpu(){
-	cudaErrorCheck(cudaMemcpyAsync(gpu_snp_data,cpu_snp_data, sizeof(snp_t)*pitch*current_batch_size, cudaMemcpyHostToDevice, stream));
+	cudaErrorCheck(cudaMemcpyAsync(gpu_snp_data,cpu_snp_data, sizeof(float)*pitch*current_batch_size, cudaMemcpyHostToDevice, stream));
 	cudaErrorCheck(cudaMemcpyAsync(gpu_frequencies,cpu_frequencies, sizeof(float)*current_batch_size, cudaMemcpyHostToDevice, stream));
 }
 GPU_Pedigree_Data::~GPU_Pedigree_Data(){
@@ -55,19 +62,19 @@ void GPU_Pedigree_Data::disable_peer_access(const int peer_gpu_id){
 	if(device != gpu_id) cudaErrorCheck(cudaSetDevice(gpu_id));
 	cudaErrorCheck(cudaDeviceDisablePeerAccess(peer_gpu_id));
 }
-GPU_Pedigree_Data::GPU_Pedigree_Data(const int _gpu_id,  const float _alpha,\
-					const int _max_batch_size, const int _n_subjects, const int _pitch,\ 
+GPU_Pedigree_Data::GPU_Pedigree_Data(const int _gpu_id, const float _alpha, const int _blockSize,\
+					const int _max_batch_size, const int _total_snps, const int _n_subjects, const int _pitch,\ 
 					const int _array_size, const int * const _subset_index_map = 0,\
-					 const int _subset_size = 0):gpu_id(_gpu_id),alpha(_alpha),max_batch_size(_max_batch_size)\
-					 ,n_subjects(_n_subjects),pitch(_pitch), array_size(_array_size),\
+					 const int _subset_size = 0):gpu_id(_gpu_id),alpha(_alpha),blockSize(_blockSize),max_batch_size(_max_batch_size)\
+					 ,total_snps(_total_snps), n_subjects(_n_subjects),pitch(_pitch), array_size(_array_size),\
 					  subset_index_map(_subset_index_map), subset_size(_subset_size){
 					  
 	allocate_gpu_data();
-	cudaErrorCheck(cudaHostAlloc((void**)&cpu_snp_data,sizeof(snp_t)*max_batch_size*pitch,cudaHostAllocWriteCombined));
+	cudaErrorCheck(cudaHostAlloc((void**)&cpu_snp_data,sizeof(float)*max_batch_size*pitch,cudaHostAllocWriteCombined));
 	cudaErrorCheck(cudaHostAlloc((void**)&cpu_frequencies,sizeof(float)*max_batch_size,cudaHostAllocWriteCombined));
 //	cpu_snp_data = new int[max_batch_size*pitch];
 //	cpu_frequencies = new float[max_batch_size];
-	memset(cpu_snp_data,0,sizeof(snp_t)*max_batch_size*pitch);
+	memset(cpu_snp_data,0,sizeof(float)*max_batch_size*pitch);
 	
 	
 }
@@ -83,7 +90,9 @@ int GPU_Pedigree_Context::fill_snp_data_array(GPU_Pedigree_Data * const stream_d
 		for(int col = 0; col < batch_size; col++){
 			freq_stream >> freq_str;
 			stream_data->cpu_frequencies[col] = stof(freq_str);
-			pio_next_row(plink_file,stream_data->cpu_snp_data + col*pitch);
+			pio_next_row(plink_file, buffer);
+			for(int row = 0; row < n_subjects; row++) stream_data->cpu_snp_data[col*pitch + row] = buffer[row];
+			//pio_next_row(plink_file,stream_data->cpu_snp_data + col*pitch);
 		/*	for(int row = 0; row < n_subjects; row++){
 				stream_data->cpu_snp_data[col*pitch + row] = buffer[row];
 			}*/
@@ -117,9 +126,9 @@ GPU_Pedigree_Context::GPU_Pedigree_Context(pio_file_t * const _plink_file, const
 	}else{
 		array_size = subset_size*(subset_size+1)/2;
 	}
-			  
-	temp_cpu_empirical_pedigree = new float[array_size];
-	temp_cpu_missing_snp_count = new unsigned[array_size];
+    const int n_rows = (subset_size == 0) ? n_subjects : subset_size; 	  
+	temp_cpu_empirical_pedigree = new float[n_rows*n_rows];
+//	temp_cpu_missing_snp_count = new unsigned[array_size];
 	buffer = new snp_t[n_subjects];
 	set_blockSize_gpu_kernel_pointer();
 }
@@ -127,9 +136,9 @@ GPU_Pedigree_Context::~GPU_Pedigree_Context(){
 	freq_stream.close();
 	delete [] buffer;
 	delete [] temp_cpu_empirical_pedigree;
-	delete [] temp_cpu_missing_snp_count;
+//	delete [] temp_cpu_missing_snp_count;
 }
-std::string GPU_Pedigree_Context::combine_gpu_results(GPU_Pedigree_Data ** gpu_pedigree_data, float * const cpu_empirical_pedigree, unsigned * const cpu_missing_snp_count, const int n_gpus){
+std::string GPU_Pedigree_Context::combine_gpu_results(GPU_Pedigree_Data ** gpu_pedigree_data, float * const cpu_empirical_pedigree, const int n_gpus){
 	std::string error_message;
 	for(int gpu_index = 0; gpu_index < n_gpus; gpu_index++){
 		try{
@@ -138,10 +147,15 @@ std::string GPU_Pedigree_Context::combine_gpu_results(GPU_Pedigree_Data ** gpu_p
 			error_message = "Failed to copy GPU pedigree data to CPU on GPU ID " + std::to_string(gpu_pedigree_data[gpu_index]->gpu_id);
 			return error_message;
 		}
-		for(int index = 0; index < array_size; index++){
-			cpu_empirical_pedigree[index] += temp_cpu_empirical_pedigree[index];
-			cpu_missing_snp_count[index] += temp_cpu_missing_snp_count[index];
-		}
+		int array_index = 0;
+		const int n_rows = (subset_size == 0) ? n_subjects : subset_size;
+		for(int col = 0 ; col < n_rows; col++){
+		    for(int row = col; row < n_rows; row++){
+		        cpu_empirical_pedigree[array_index] += temp_cpu_empirical_pedigree[col*n_rows + row];
+		      //  cpu_missing_snp_count[array_index] += temp_cpu_missing_snp_count[array_index];
+		        array_index++;
+		    }
+	    }   
 	}
 	
 	
@@ -708,6 +722,7 @@ const char * GPU_Pedigree_Data::run_pedigree_creation(GPU_Stream_Pedigree_Data *
 }*/
 void GPU_Pedigree_Context::copy_results_to_cpu(GPU_Pedigree_Data * pedigree_data){
 	cudaErrorCheck(cudaSetDevice(pedigree_data->gpu_id));
-	cudaErrorCheck(cudaMemcpy(temp_cpu_empirical_pedigree, pedigree_data->gpu_empirical_pedigree, sizeof(float)*array_size, cudaMemcpyDeviceToHost));	
-	cudaErrorCheck(cudaMemcpy(temp_cpu_missing_snp_count, pedigree_data->gpu_missing_snp_count, sizeof(unsigned)*array_size, cudaMemcpyDeviceToHost));
+	const int n_rows = (subset_size == 0) ? n_subjects : subset_size; 
+	cudaErrorCheck(cudaMemcpy(temp_cpu_empirical_pedigree, pedigree_data->gpu_empirical_pedigree, sizeof(float)*n_rows*n_rows, cudaMemcpyDeviceToHost));	
+//	cudaErrorCheck(cudaMemcpy(temp_cpu_missing_snp_count, pedigree_data->gpu_missing_snp_count, sizeof(unsigned)*array_size, cudaMemcpyDeviceToHost));
 }
