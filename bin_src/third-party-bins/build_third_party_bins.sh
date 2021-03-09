@@ -1,5 +1,8 @@
-SCRIPT=$(realpath $0)
+#!/bin/bash
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 args=("$@")
 INSTALL_PATH=/usr/local/bin
 C_COMPILER=$(which gcc)
@@ -8,11 +11,11 @@ MAKE_CLEAN=0
 SAFELIB_PATH=/usr/local
 shared_ext="so"
 OS="Linux"
-if [[ "$OSTYPE" = "linux-gnu" ]]
+if [[ "$OSTYPE" = "linux-gnu"* ]]
 then
         OS="Linux"
         shared_ext="so"
-elif [[ "$OSTYPE" = "darwin" ]]
+elif [[ "$OSTYPE" = "darwin"* ]]
 then
         OS="Mac"
         shared_ext="dylib"

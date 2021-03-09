@@ -1,7 +1,9 @@
 #!/bin/bash
 
-SCRIPT=$(realpath $0)
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 args=("$@")
 CUDA_PREFIX=/usr/local/cuda
 INSTALL_PREFIX=/usr/local/lib
@@ -9,11 +11,11 @@ INCLUDE_PATH=$SCRIPT_PATH/include
 CXX_COMPILER=$(which g++)
 OS="Linux"
 shared_ext="so"
-if [[ "$OSTYPE" = "linux-gnu" ]]
+if [[ "$OSTYPE" = "linux-gnu"* ]]
 then
         OS="Linux"
         shared_ext="so"
-elif [[ "$OSTYPE" = "darwin" ]]
+elif [[ "$OSTYPE" = "darwin"* ]]
 then
         OS="Mac"
         shared_ext="dylib"
@@ -266,7 +268,7 @@ echo ".SUFFIXES: .cu .cc .o .h" >> Makefile
 echo ".cu.o:" >> Makefile
 echo "	$CUDA_PREFIX/bin/nvcc -c   -maxrregcount 62  -std=c++11 -O3 -use_fast_math -Xcompiler -fPIC -Xcompiler -fexceptions -Xcompiler -w $GENCODE_FLAGS -Xcompiler -I$CUDA_PREFIX/include -Xcompiler -I$INCLUDE_PATH -o \$@ \$<" >> Makefile
 echo ".cc.o:" >> Makefile
-echo "	$CXX_COMPILER -c  -I$INCLUDE_PATH -pthread -fopenmp -O3 -std=c++0x -fPIC -w -I$CUDA_PREFIX/include -o \$@ \$<" >> Makefile
+echo "	$CXX_COMPILER -c  -I$INCLUDE_PATH -pthread -fopenmp -O3 -std=c++11 -fPIC -w -I$CUDA_PREFIX/include -o \$@ \$<" >> Makefile
 echo ".PHONY: all" >> Makefile
 if [ $OS = "Linux" ]
 then

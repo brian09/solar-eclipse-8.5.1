@@ -1,7 +1,8 @@
 #!/bin/bash
-
-SCRIPT=$(realpath $0)
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 args=("$@")
 INSTALL_PREFIX=/usr/local
 CXX_COMPILER=$(which g++)
@@ -129,7 +130,7 @@ echo "\$(SOURCE_PATH)/zutil.h " >> sources.mk
 echo "include sources.mk" >> Makefile
 echo ".SUFFIXES: .c .cpp .o .h" >> Makefile
 echo ".cpp.o:" >> Makefile
-echo "	$CXX_COMPILER -c -O3 -std=c++0x -I\$(SOURCE_PATH) -w -o \$@ \$<" >> Makefile
+echo "	$CXX_COMPILER -c -O3 -std=c++11 -I\$(SOURCE_PATH) -w -o \$@ \$<" >> Makefile
 echo ".c.o:" >> Makefile
 echo "	$C_COMPILER -c -O3 -I\$(SOURCE_PATH) -w -o \$@ \$<" >> Makefile
 

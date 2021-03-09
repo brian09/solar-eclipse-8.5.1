@@ -1,7 +1,9 @@
 #!/bin/bash
 
-SCRIPT=$(realpath $0)
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 args=("$@")
 INSTALL_PREFIX=/usr/local
 C_COMPILER=$(which gcc)

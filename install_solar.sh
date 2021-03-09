@@ -3,8 +3,10 @@ SOLAR_RELEASE=8.5.1
 CXX_COMPILER=$(which g++)
 C_COMPILER=$(which gcc)
 FC_COMPILER=$(which gfortran)
-SCRIPT=$(realpath $0)
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 BUILD_DYNAMIC=1
 CUDA_PREFIX=0
 USE_GPU_TOOLS=0
@@ -16,14 +18,15 @@ BUILD_THIRD_PARTY_BINARIES=1
 SOLAR_SCRIPT_NAME=solar
 SOLAR_SCRIPT_PATH=/usr/local/bin
 SOLAR_RELEASE_PATH=/opt/appl/solar/$SOLAR_RELEASE
+USE_MKL=0
 MKL_PATH=/opt/intel/mkl
 shared_ext="so"
 OS="Linux"
-if [[ "$OSTYPE" == "linux-gnu" ]]
+if [[ "$OSTYPE" == "linux-gnu"* ]]
 then
         OS="Linux"
         shared_ext="so"
-elif [[ "$OSTYPE" == "darwin" ]]
+elif [[ "$OSTYPE" == "darwin"* ]]
 then
         OS="Mac"
         shared_ext="dylib"
@@ -59,8 +62,14 @@ function help_display {
  	echo " "
   	echo "--fc_compiler <Fortran compiler> Default: $(which gfortran)"
  	echo ""
- 	echo "--mkl_path <Path to MKL include and lib folders> Default: /opt/intel/mkl"
- 	echo "" 
+ 	echo "--use_mkl <Path to MKL include and lib folders> Default: Disabled"
+ 	echo "By default Intel Math Kernel Library is installed in /opt/intel which means"
+ 	echo "that the path would be /opt/intel/mkl. The path must include an include folder"
+ 	echo "and a lib folder containing: "
+ 	echo "  intel64/libmkl_core.a"
+ 	echo "  intel64/libmkl_gnu_thread.a," 
+ 	echo "  intel64/libmkl_intel_lp64.a" 
+ 	echo ""
  	echo "--build_fresh Default: Disabled"
  	echo "Builds a completely fresh installation of solar by deleting all previously built libraries and binaries" 
  	echo " "
@@ -113,8 +122,9 @@ do
  	i=$(($i + 1))
  	SOLAR_RELEASE_PATH=${args[$i]} 
  	 	 	
- elif [ "$current_arg" = "--mkl_path" ] && [ $(($i + 1)) -lt $# ] 
+ elif [ "$current_arg" = "--use_mkl" ] && [ $(($i + 1)) -lt $# ] 
  then
+    USE_MKL=1
  	i=$(($i + 1))
  	MKL_PATH=${args[$i]} 	
  	
@@ -148,8 +158,8 @@ fi
 mkdir -p $SOLAR_RELEASE_PATH
 mkdir -p $SOLAR_RELEASE_PATH/lib
 mkdir -p $SOLAR_RELEASE_PATH/bin
-
-if [ "$OSTYPE" != "linux-gnu" ] && [ $BUILD_DYNAMIC -eq 0 ] 
+OS=$(uname)
+if [ "$OS" != "Linux" ] && [ $BUILD_DYNAMIC -eq 0 ] 
 then
 	BUILD_DYNAMIC=1
 	echo "Warning: static build was selected but since operating system is $OSTYPE and not linux-gnu a dynamic build will be used instead"
@@ -331,11 +341,15 @@ then
 	echo "solarmain-$SOLAR_RELEASE build folder not found at $SCRIPT_PATH/bin_src/"
 	exit 1
 fi
-
+MKL_ARG=
+if [ $USE_MKL -eq 1 ]
+then
+    MKL_ARG="--use_mkl $MKL_PATH"
+fi
 chmod +x ./configure.sh
 if [ $BUILD_DYNAMIC -eq 0 ]
 then
-	./configure.sh --install_path $SOLAR_RELEASE_PATH/bin --cxx_compiler $CXX_COMPILER --c_compiler $C_COMPILER --fc_compiler $FC_COMPILER --mkl_path $MKL_PATH --static
+	./configure.sh --install_path $SOLAR_RELEASE_PATH/bin --cxx_compiler $CXX_COMPILER --c_compiler $C_COMPILER --fc_compiler $FC_COMPILER $MKL_ARG --static
 	if [  $? -ne 0 ]
 	then
 		echo "Failed to configure makefile for solarmain"
@@ -344,7 +358,7 @@ then
 
 elif [ $USE_GPU_TOOLS -eq 1 ]
 then
-	./configure.sh --install_path $SOLAR_RELEASE_PATH/bin --cxx_compiler $CXX_COMPILER --c_compiler $C_COMPILER --fc_compiler $FC_COMPILER --mkl_path $MKL_PATH --enable_gpu_tools $SOLAR_RELEASE_PATH/lib/libgpu-commands.$shared_ext $LIBCUDART_PATH $LIBCUBLAS_PATH 
+	./configure.sh --install_path $SOLAR_RELEASE_PATH/bin --cxx_compiler $CXX_COMPILER --c_compiler $C_COMPILER --fc_compiler $FC_COMPILER $MKL_ARG --enable_gpu_tools $SOLAR_RELEASE_PATH/lib/libgpu-commands.$shared_ext $LIBCUDART_PATH $LIBCUBLAS_PATH 
 	if [  $? -ne 0 ]
 	then
 		echo "Failed to configure makefile for solarmain"
@@ -352,7 +366,7 @@ then
 	fi
 
 else
-	./configure.sh --install_path $SOLAR_RELEASE_PATH/bin --cxx_compiler $CXX_COMPILER --c_compiler $C_COMPILER --fc_compiler $FC_COMPILER --mkl_path $MKL_PATH 
+	./configure.sh --install_path $SOLAR_RELEASE_PATH/bin --cxx_compiler $CXX_COMPILER --c_compiler $C_COMPILER --fc_compiler $FC_COMPILER $MKL_ARG
 	if [  $? -ne 0 ]
 	then
 		echo "Failed to configure makefile for solarmain"

@@ -1,6 +1,8 @@
 #!/bin/bash
-SCRIPT=$(realpath $0)
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 INSTALL_PATH=/usr/local
 args=("$@")
 MAKE_CLEAN=0
@@ -54,14 +56,14 @@ cd  unix
 if [ $MAKE_CLEAN -eq 1 ]
 then
    make clean
-   make distclean
+   
 fi
 
 CC=$C_COMPILER
 export CC
 chmod +x $SCRIPT_PATH/unix/configure 
-$SCRIPT_PATH/unix/configure --disable-shared --enable-threads --enable-64bit --prefix=$INSTALL_PREFIX
-if [$? -ne 0 ]
+$SCRIPT_PATH/unix/configure --enable-shared=no --enable-threads --enable-64bit --prefix=$INSTALL_PREFIX
+if [ $? -ne 0 ]
 then
 	echo "Failed to configure tcl8.4"
 	exit 1
@@ -83,4 +85,3 @@ then
 	echo "Failed to install tcl8.4"
 	exit 1
 fi
-rm -f $INSTALL_PREFIX/bin/tclsh8.4

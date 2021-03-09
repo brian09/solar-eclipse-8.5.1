@@ -216,9 +216,7 @@ static Eigen::ArrayXXd find_max_loglik_2(const int precision, Eigen::VectorXd Y,
     	Eigen::VectorXd test_sigma_inverse = test_sigma.cwiseInverse();
     	Eigen::MatrixXd test_omega = test_sigma_inverse.asDiagonal();
     	Eigen::MatrixXd test_XTOX = X.transpose()*test_omega*X;
-     	if(test_XTOX.determinant() == 0){
-    		return parameters;
-   	}else{   	
+     	if(test_XTOX.determinant() != 0){  	
     		Eigen::VectorXd test_beta = test_XTOX.inverse()*X.transpose()*test_omega*Y;
     		Eigen::VectorXd test_residual = Y - X*test_beta;
     		double test_variance = test_residual.cwiseAbs2().dot(test_sigma_inverse)/n_subjects;

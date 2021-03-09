@@ -468,7 +468,7 @@ SRCS = $(GENERIC_SRCS) $(UNIX_SRCS) $(NOTIFY_SRCS) $(STUB_SRCS) @PLAT_SRCS@
 
 all: binaries libraries
 
-binaries: ${LIB_FILE} $(STUB_LIB_FILE) $(TCL_BUILD_EXP_FILE) tclsh
+binaries: ${LIB_FILE} $(STUB_LIB_FILE) $(TCL_BUILD_EXP_FILE) 
 
 libraries:
 
@@ -496,9 +496,9 @@ tclLibObjs:
 objs: ${OBJS}
 
 
-tclsh: ${TCLSH_OBJS} ${TCL_LIB_FILE}
-	${CC} ${CFLAGS} ${LDFLAGS} ${TCLSH_OBJS} @TCL_BUILD_LIB_SPEC@ ${LIBS} @EXTRA_TCLSH_LIBS@ \
-		${CC_SEARCH_FLAGS} -o tclsh
+#tclsh: ${TCLSH_OBJS} ${TCL_LIB_FILE}
+#	${CC} ${CFLAGS} ${LDFLAGS} ${TCLSH_OBJS} @TCL_BUILD_LIB_SPEC@ ${LIBS} @EXTRA_TCLSH_LIBS@ \
+#		${CC_SEARCH_FLAGS} -o tclsh
 
 # Resetting the LIB_RUNTIME_DIR below is required so that
 # the generated tcltest executable gets the build directory
@@ -539,36 +539,36 @@ ro-test: tcltest
 
 # This target can be used to run tclsh from the build directory
 # via `make shell SCRIPT=/tmp/foo.tcl`
-shell: tclsh
-	@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
-	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
-	./tclsh $(SCRIPT)
+#shell: tclsh
+#	@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
+#	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
+#	./tclsh $(SCRIPT)
 
 # This target can be used to run tclsh inside either gdb or insight
-gdb: tclsh
-	@echo "set env @LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}" > gdb.run
-	@echo "set env TCL_LIBRARY=${TCL_BUILDTIME_LIBRARY}" >> gdb.run
-	$(GDB) ./tclsh --command=gdb.run
-	rm gdb.run
+#gdb: tclsh
+#	@echo "set env @LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}" > gdb.run
+#	@echo "set env TCL_LIBRARY=${TCL_BUILDTIME_LIBRARY}" >> gdb.run
+#	$(GDB) ./tclsh --command=gdb.run
+#	rm gdb.run
 
 # This target can be used to run tclsh inside ddd
-ddd: tclsh
-	@echo "set env @LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}" > gdb.run
-	@echo "set env TCL_LIBRARY=${TCL_BUILDTIME_LIBRARY}" >> gdb.run
-	$(DDD) -command=gdb.run ./tclsh
-	rm gdb.run
+#ddd: tclsh
+#	@echo "set env @LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}" > gdb.run
+#	@echo "set env TCL_LIBRARY=${TCL_BUILDTIME_LIBRARY}" >> gdb.run
+#	$(DDD) -command=gdb.run ./tclsh
+#	rm gdb.run
 
 VALGRINDARGS=--tool=memcheck --num-callers=8 --leak-resolution=high --leak-check=yes --show-reachable=yes -v
 
-valgrind: tclsh tcltest
-	@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
-	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
-	valgrind $(VALGRINDARGS) ./tcltest $(TOP_DIR)/tests/all.tcl -singleproc 1 $(TESTFLAGS) $(TCLTESTARGS)
+#valgrind: tclsh tcltest
+#	@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
+#	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
+#	valgrind $(VALGRINDARGS) ./tcltest $(TOP_DIR)/tests/all.tcl -singleproc 1 $(TESTFLAGS) $(TCLTESTARGS)
 
-valgrindshell: tclsh
-	@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
-	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
-	valgrind $(VALGRINDARGS) ./tclsh $(SCRIPT)
+#valgrindshell: tclsh
+#	@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
+#	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
+#	valgrind $(VALGRINDARGS) ./tclsh $(SCRIPT)
 
 # The following target outputs the name of the top-level source directory
 # for Tcl (it is used by Tk's configure script, for example).  The
@@ -639,8 +639,8 @@ install-binaries: binaries
 	    $(INSTALL_DATA) $(TCL_BUILD_EXP_FILE) \
 			$(LIB_INSTALL_DIR)/$(TCL_EXP_FILE); \
 	    fi
-	@echo "Installing tclsh as $(BIN_INSTALL_DIR)/tclsh$(VERSION)"
-	@$(INSTALL_PROGRAM) tclsh $(BIN_INSTALL_DIR)/tclsh$(VERSION)
+#	@echo "Installing tclsh as $(BIN_INSTALL_DIR)/tclsh$(VERSION)"
+#	@$(INSTALL_PROGRAM) tclsh $(BIN_INSTALL_DIR)/tclsh$(VERSION)
 	@echo "Installing tclConfig.sh to $(LIB_INSTALL_DIR)/"
 	@$(INSTALL_DATA) tclConfig.sh $(LIB_INSTALL_DIR)/tclConfig.sh
 	@if test "$(STUB_LIB_FILE)" != "" ; then \
@@ -794,7 +794,7 @@ Makefile: $(UNIX_DIR)/Makefile.in $(DLTEST_DIR)/Makefile.in
 
 clean:
 	rm -f *.a *.o libtcl* core errs *~ \#* TAGS *.E a.out \
-		errors tclsh tcltest lib.exp Tcl @DTRACE_HDR@
+		errors  tcltest lib.exp Tcl @DTRACE_HDR@
 	cd dltest ; $(MAKE) clean
 
 distclean: clean
@@ -814,33 +814,6 @@ depend:
 # tclAppInit.o does not execute concurrently with the renaming and recompiling
 # of that same object file in the targets below.
 
-tclTestInit.o: $(UNIX_DIR)/tclAppInit.c tclsh
-	@if test -f tclAppInit.o ; then \
-	    rm -f tclAppInit.sav; \
-	    mv tclAppInit.o tclAppInit.sav; \
-	fi;
-	$(CC) -c $(APP_CC_SWITCHES) \
-		-DTCL_BUILDTIME_LIBRARY="\"${TCL_BUILDTIME_LIBRARY}\"" \
-		-DTCL_TEST $(UNIX_DIR)/tclAppInit.c
-	rm -f tclTestInit.o
-	mv tclAppInit.o tclTestInit.o
-	@if test -f tclAppInit.sav ; then \
-	    mv tclAppInit.sav tclAppInit.o; \
-	fi;
-
-xtTestInit.o: $(UNIX_DIR)/tclAppInit.c tclsh
-	@if test -f tclAppInit.o ; then \
-	    rm -f tclAppInit.sav; \
-	    mv tclAppInit.o tclAppInit.sav; \
-	fi;
-	$(CC) -c $(APP_CC_SWITCHES) \
-		-DTCL_BUILDTIME_LIBRARY="\"${TCL_BUILDTIME_LIBRARY}\"" \
-		-DTCL_TEST -DTCL_XT_TEST $(UNIX_DIR)/tclAppInit.c
-	rm -f xtTestInit.o
-	mv tclAppInit.o xtTestInit.o
-	@if test -f tclAppInit.sav ; then \
-	    mv tclAppInit.sav tclAppInit.o; \
-	fi;
 
 # Object files used on all Unix systems:
 
@@ -1420,21 +1393,6 @@ allpatch: dist
 # TOOL_DIR.
 #
 
-html: tclsh
-	$(BUILD_HTML)
-	@EXTRA_BUILD_HTML@
-html-tcl: tclsh
-	$(BUILD_HTML) --tcl
-	@EXTRA_BUILD_HTML@
-html-tk: tclsh
-	$(BUILD_HTML) --tk
-	@EXTRA_BUILD_HTML@
-
-BUILD_HTML = \
-	@@LD_LIBRARY_PATH_VAR@=`pwd`:$${@LD_LIBRARY_PATH_VAR@}; export @LD_LIBRARY_PATH_VAR@; \
-	TCL_LIBRARY="${TCL_BUILDTIME_LIBRARY}"; export TCL_LIBRARY; \
-	./tclsh $(TOOL_DIR)/tcltk-man2html.tcl --htmldir=$(HTML_INSTALL_DIR) \
-		--srcdir=$(TOP_DIR)/.. $(BUILD_HTML_FLAGS)
 
 #
 # Targets to build Solaris package of the distribution for the current
@@ -1485,9 +1443,8 @@ package-common:
 		exec_prefix=$(DISTDIR)/$(PACKAGE)/$(VERSION)/`arch` \
 		install-libraries install-man
 	mkdir -p $(DISTDIR)/$(PACKAGE)/$(VERSION)/bin
-	sed -e "s/TCLVERSION/$(VERSION)/g" < $(UNIX_DIR)/tclsh.sh \
-		> $(DISTDIR)/$(PACKAGE)/$(VERSION)/bin/tclsh$(VERSION)
-	chmod 755 $(DISTDIR)/$(PACKAGE)/$(VERSION)/bin/tclsh$(VERSION)
+
+	
 
 #
 # Build and install the architecture specific files in the dist directory.

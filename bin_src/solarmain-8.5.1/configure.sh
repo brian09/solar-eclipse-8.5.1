@@ -1,7 +1,8 @@
 #!/bin/bash
-
-SCRIPT=$(realpath $0)
+SCRIPT=$0
 SCRIPT_PATH=$(dirname $SCRIPT)
+cd $SCRIPT_PATH
+SCRIPT_PATH=$(pwd)
 args=("$@")
 BUILD_DYNAMIC=1
 USE_GPU_TOOLS=0
@@ -11,6 +12,7 @@ CUDA_LIBCUDART=0
 INSTALL_PATH=$SCRIPT_PATH
 LIBRARY_PATH=$SCRIPT_PATH/lib
 INCLUDE_PATH=$SCRIPT_PATH/include
+USE_MKL=0
 MKL_PATH=/opt/intel/mkl
 CXX_COMPILER=$(which g++)
 C_COMPILER=$(which gcc)
@@ -54,12 +56,18 @@ function help_display {
  	echo "Enables CUDA GPU commands gpu_pedifromsnps,gpu_fphi, and gpu_gwas"
  	echo "Require installation of CUDA Toolkit and NVIDIA CUDA capable GPU with architecture version greater than or equal to 3.5"
  	echo ""
- 	echo "--mkl_path <Path to MKL include and lib folders> Default: /opt/intel/mkl"
+ 	echo "--use_mkl <Path to MKL include and lib folders> Default: Disabled" 
+ 	echo "By default Intel Math Kernel Library is installed in /opt/intel which means"
+ 	echo "that the path would be /opt/intel/mkl.  The path must include an include folder"
+ 	echo "and a lib folder containing: "
+ 	echo "  intel64/libmkl_core.a"
+ 	echo "  intel64/libmkl_gnu_thread.a," 
+ 	echo "  intel64/libmkl_intel_lp64.a" 
  	echo ""
 
 }
 
-
+OS=$(uname)
 for ((i = 0; i < $#; i++ )); do
    
      current_arg=${args[$i]}
@@ -70,7 +78,7 @@ for ((i = 0; i < $#; i++ )); do
 	exit 0
  elif [ "$current_arg" = "--static" ]  
  then
- 	if [ "$OSTYPE" != "linux-gnu"* ]
+ 	if [ "$OS" != "Linux" ]
  	then	
  		echo "Operating System: $OSTYPE must be linux-gnu to use the -static option"
  		exit 1
@@ -97,8 +105,9 @@ for ((i = 0; i < $#; i++ )); do
  then
  	i=$(($i + 1))
  	INCLUDE_PATH=${args[$i]} 
- elif [ "$current_arg" = "--mkl_path" ] && [ $(($i + 1)) -lt $# ] 
+ elif [ "$current_arg" = "--use_mkl" ] && [ $(($i + 1)) -lt $# ] 
  then
+    USE_MKL=1
  	i=$(($i + 1))
  	MKL_PATH=${args[$i]} 	
  elif [ "$current_arg" = "--c_compiler" ] && [ $(($i + 1)) -lt $# ] 
@@ -165,11 +174,7 @@ then
  	echo "Compilation errors may occur"
 fi
 
-if  [ ! -d $MKL_PATH/include ]
-then
-   echo "Folder $MKL_PATH/include not found"
-   exit 1
-fi
+
 
 if  [ ! -d $INCLUDE_PATH ]
 then
@@ -315,20 +320,28 @@ then
     echo "into a static library.  By default it can be found in the src directory"
     exit 1
 fi
-if [ ! -f $MKL_PATH/lib/intel64/libmkl_gnu_thread.a ] 
-then 
-    echo "Library libmkl_gnu_thread.a not found in $MKL_PATH/lib/intel64"
-    exit 1
-fi
-if [ ! -f $MKL_PATH/lib/intel64/libmkl_intel_lp64.a ] 
-then 
-    echo "Library libmkl_intel_lp64.a not found in $MKL_PATH/lib/intel64"
-    exit 1
-fi
-if [ ! -f $MKL_PATH/lib/intel64/libmkl_core.a ] 
-then 
-    echo "Library libmkl_core.a not found in $MKL_PATH/lib/intel64"
-    exit 1
+if [ $USE_MKL -eq 1 ] 
+then
+    if  [ ! -d $MKL_PATH/include ]
+    then
+        echo "Folder $MKL_PATH/include not found"
+        exit 1
+    fi
+    if [ ! -f $MKL_PATH/lib/intel64/libmkl_gnu_thread.a ] 
+    then 
+        echo "Library libmkl_gnu_thread.a not found in $MKL_PATH/lib/intel64"
+        exit 1
+    fi
+    if [ ! -f $MKL_PATH/lib/intel64/libmkl_intel_lp64.a ] 
+    then 
+        echo "Library libmkl_intel_lp64.a not found in $MKL_PATH/lib/intel64"
+        exit 1
+    fi
+    if [ ! -f $MKL_PATH/lib/intel64/libmkl_core.a ] 
+    then 
+        echo "Library libmkl_core.a not found in $MKL_PATH/lib/intel64"
+        exit 1
+    fi
 fi
 if [ ! -f $CUDA_LIBGPUCOMMANDS ] && [ $USE_GPU_TOOLS -eq 1 ]
 then 
@@ -541,30 +554,40 @@ then
 fi
 echo "-ldl \\" >> sources.mk
 echo "-lstdc++ \\" >> sources.mk
-echo "-lgomp \\" >> sources.mk
-echo "" >> sources.mk
-echo "MKL_LIBS= \\" >> sources.mk
-echo "$MKL_PATH/lib/intel64/libmkl_core.a \\" >> sources.mk
-echo "$MKL_PATH/lib/intel64/libmkl_gnu_thread.a \\" >> sources.mk
-echo "$MKL_PATH/lib/intel64/libmkl_intel_lp64.a \\" >> sources.mk
+if [ $USE_MKL -eq 1 ]
+then
+    echo "-lgomp \\" >> sources.mk
+    echo "" >> sources.mk
+    echo "MKL_LIBS= \\" >> sources.mk
+    echo "$MKL_PATH/lib/intel64/libmkl_core.a \\" >> sources.mk
+    echo "$MKL_PATH/lib/intel64/libmkl_gnu_thread.a \\" >> sources.mk
+    echo "$MKL_PATH/lib/intel64/libmkl_intel_lp64.a \\" >> sources.mk
+else
+    echo "" >> sources.mk
+    echo "MKL_LIBS= \\" >> sources.mk
+fi
 
 echo "include sources.mk" >> Makefile
 echo ".SUFFIXES: .f .cc .o .h" >> Makefile
 echo "FFLAGS=-m64  -O2 -fno-second-underscore -fexceptions" >> Makefile
 echo "CFLAGS=-std=c99 -m64 -O2 -I$INCLUDE_PATH -DUSE_SAFELIB -fexceptions" >> Makefile
-
+MKL_INCLUDE=
+if [ $USE_MKL -eq 1 ]
+then
+    MKL_INCLUDE="-I$MKL_PATH/include -DEIGEN_USE_MKL_ALL"
+fi
 if [ $USE_GPU_TOOLS -eq 1 ] 
 then
-	echo "CXXFLAGS= -O2  -std=c++0x -fopenmp  -DGPU_TOOLS  -m64 -I../lib -I$INCLUDE_PATH -DUSE_SAFELIB -fexceptions -DTR1 -DLINUX64 -DUSE_SAFELIB  -I$MKL_PATH/include/ -DEIGEN_USE_MKL_ALL " >> Makefile
+	echo "CXXFLAGS= -O2  -std=c++11 -fopenmp  -DGPU_TOOLS  -m64 -I../lib -I$INCLUDE_PATH -DUSE_SAFELIB -fexceptions -DTR1 -DLINUX64 -DUSE_SAFELIB  $MKL_INCLUDE" >> Makefile
 else
-	echo "CXXFLAGS=-O2  -std=c++0x -fopenmp  -m64 -I../lib -I$INCLUDE_PATH -DUSE_SAFELIB -fexceptions -DTR1 -DLINUX64 -DUSE_SAFELIB  -I$MKL_PATH/include/ -DEIGEN_USE_MKL_ALL" >> Makefile
+	echo "CXXFLAGS=-O2  -std=c++11 -fopenmp  -m64 -I../lib -I$INCLUDE_PATH -DUSE_SAFELIB -fexceptions -DTR1 -DLINUX64 -DUSE_SAFELIB  $MKL_INCLUDE" >> Makefile
 fi
 
 if [ $BUILD_DYNAMIC -eq 1 ]
 then
 	echo "LDFLAGS=-std=c++11 -m64 -O2 -L$LIBRARY_PATH -pthread -fopenmp -fexceptions" >> Makefile
 else
-	echo "LDFLAGS=-static -std=c++0x -m64 -O2 -L$LIBRARY_PATH -pthread -fopenmp -fexceptions" >> Makefile
+	echo "LDFLAGS=-static -std=c++11 -m64 -O2 -L$LIBRARY_PATH -pthread -fopenmp -fexceptions" >> Makefile
 fi
 
 echo ".cc.o:" >> Makefile
