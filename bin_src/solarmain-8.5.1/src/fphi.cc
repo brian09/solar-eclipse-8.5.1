@@ -766,17 +766,14 @@ extern "C" int runfphiCmd(ClientData clientData, Tcl_Interp * interp,
     bool web_mode = false;
     string mask_filename;
     const char * list_filename = 0;
-    float sampling_rate;
-    int n_subsamples;
+
     for(int arg = 1 ;arg < argc ; arg++){
         if(!StringCmp(argv[arg], "help", case_ins) || !StringCmp(argv[arg], "-help", case_ins) || !StringCmp(argv[arg], "--help", case_ins)
            || !StringCmp(argv[arg], "h", case_ins) || !StringCmp(argv[arg], "-h", case_ins) || !StringCmp(argv[arg], "--help", case_ins)){
             print_fphi_help(interp);
             return TCL_OK;
         }else if ((!StringCmp(argv[arg], "-fast", case_ins) || !StringCmp(argv[arg], "--f", case_ins) || !StringCmp(argv[arg], "-f", case_ins) ||
-                  !StringCmp(argv[arg], "--fast", case_ins)) && arg + 2 < argc ){
-            sampling_rate = atof(argv[++arg]);
-            n_subsamples = atoi(argv[++arg]);
+                  !StringCmp(argv[arg], "--fast", case_ins))){
             converge = false;
         }else if (!StringCmp(argv[arg], "-d", case_ins) || !StringCmp(argv[arg], "--d", case_ins) || !StringCmp(argv[arg], "-debug", case_ins) ||
                   !StringCmp(argv[arg], "--debug", case_ins)){
