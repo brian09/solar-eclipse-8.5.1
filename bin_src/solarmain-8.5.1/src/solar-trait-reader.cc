@@ -422,7 +422,7 @@ Solar_Trait_Reader::Solar_Trait_Reader(const char * phenotype_filename, const ch
 	for(unsigned i = 0; i < trait_names.size() ; i++){
 		string current_trait = trait_names[i];
 		vector<string>::iterator find_iter = find(excluded_trait_names.begin(), excluded_trait_names.end(), current_trait);
-		if(find_iter != excluded_trait_names.end()){
+		if(find_iter == excluded_trait_names.end()){
 			column_indices[index++] = i;
 		}
 	}
