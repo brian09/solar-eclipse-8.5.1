@@ -185,6 +185,11 @@ echo "Successfully install allfreq, domcibd, genfreq, ibdmat, ibdprep, multipnt,
 
 
 cd $SCRIPT_PATH/rlwrap-master
+aclocal
+autoconf
+autoheader
+automake --add-missing
+autoreconf --install
 chmod +x ./configure
 ./configure
 if [  $? -ne 0 ]
